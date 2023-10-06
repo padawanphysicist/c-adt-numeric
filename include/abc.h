@@ -16,24 +16,21 @@
  */
 
 /** 
- * @file new.h
- * @brief Interface for the initialization routines of the classes.
+ * @file abc.h
+ * @brief Interface for the Abstract Base Class (ABC).
  */
-#ifndef __NEW_H__
-#define __NEW_H__
+#ifndef	__ABC_H__
+#define	__ABC_H__
 
-#include <stddef.h>
+#include <stdarg.h>
+#include <stdio.h>
 
-void*
-new (const void* class, ...);
+struct ABC
+{
+    size_t size;
+	void* (* ctor)  (void* self, va_list* app);
+	void* (* dtor)  (void* self);
+	void* (* clone) (const void* self);
+};
 
-void
-delete (void* item);
-
-void*
-clone (const void* self);
-
-size_t
-size_of (const void* self);
-
-#endif /* __NEW_H__ */
+#endif /* __ABC_H__ */

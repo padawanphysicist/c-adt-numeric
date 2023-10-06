@@ -1,96 +1,68 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "new.h"
-#include "numeric.h"
+#include "num.h"
 
-void
-print(const char* name, const numeric_t z)
+int
+test (const int id, const char* msg, const num_t computed, const num_t expected)
 {
-    double r[2];
-    numeric_to_double (r, z);    
-    printf("%s(%+.5e, %+.5e)\n", name, r[0], r[1]);
+    if (! num_eq(computed, expected))
+    {
+        double c[2];
+        double e[2];
+
+        num_to_double(c, computed);
+        num_to_double(e, expected);
+        
+        printf("[id=%02d] %s [ERROR]: expected=(%g, %g), computed=(%g, %g)\n",
+               id, msg, e[0], e[1], c[0], c[1]);
+
+        return 1;
+    }
+
+    return 0;
 }
 
-int main ()
+int
+main (void)
 {
-    numeric_t tmp;
-  
-    numeric_t zero = new(numeric, 0.0, 0.0);
-    numeric_t I    = new(numeric, 0.0, 1.0);
-    numeric_t one  = new(numeric, 1.0, 0.0);    
-    numeric_t x    = new(numeric, 3.0, 4.0);    
-    numeric_t y    = new(numeric, -1.0, 2.0);
+    int code, count = 1;
 
-    printf("# Print numbers ==================\n");
-    print("zero = ", zero);
-    print("   I = ", I);
-    print(" one = ", one);
-    print("   x = ", x);
-    print("   y = ", y);
-
-    printf("\n# Negation ==================\n");  
-    tmp = numeric_negative (zero);
-    print("-zero =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_negative (I);
-    print("-I =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_negative (one);
-    print("-x =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_negative (x);
-    print("-one =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_negative (y);
-    print("-y =\t", tmp);
-    delete(tmp);
-
-    printf("\n# Conjugation ==================\n");  
-    tmp = numeric_conjugate (zero);
-    print("*zero =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_conjugate (I);
-    print("*I =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_conjugate (one);
-    print("*x =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_conjugate (x);
-    print("*one =\t", tmp);
-    delete(tmp);
-
-    tmp = numeric_conjugate (y);
-    print("*y =\t", tmp);
-    delete(tmp);
-
-    printf("\n# Addition ==================\n");  
-    tmp = numeric_add (x, y);
-    print("x + y =\t", tmp);
-    delete(tmp);
-
-    printf("\n# Subtraction ==================\n");  
-    tmp = numeric_sub (x, y);
-    print("x - y =\t", tmp);
-    delete(tmp);
-
-    printf("\n# Multiplication ==================\n");  
-    tmp = numeric_mul (x, y);
-    print("x * y =\t", tmp);
-    delete(tmp);
-
-    printf("\n# Multiplication ==================\n");  
-    tmp = numeric_div (x, y);
-    print("x / y =\t", tmp);
-    delete(tmp);
+    /* Binary operations */
+    num_t x, y, computed, expected;
     
-	delete(I), delete(one), delete(zero), delete(x), delete(y);
+    /* add */
+
+    /* Test 1 */
+    x = new(num, +4.0, +3.0);    
+    y = new(num, -3.0, -2.0);
+    computed = num_add(x, y);
+    expected = new(num, 1.0, 1.0);
+    code = test(count, "(4+3i) + (-3-2i)", computed, expected);
+    delete(x), delete(y), delete(expected);
+    if (code == 1) exit(1);
+    count++;
+
+    /* Test 2 */
+    x = new(num, 0.0, +3.0);    
+    y = new(num, 0.0, -2.0);
+    computed = num_add(x, y);
+    expected = new(num, 0.0, 1.0);
+    code = test(count, "3i + (-2i)", computed, expected);
+    delete(x), delete(y), delete(expected);
+    if (code == 1) exit(1);
+    count++;
+
+    /* Test 3 */
+    x = new(num, +4.0, 0.0);    
+    y = new(num, -3.0, 0.0);
+    computed = num_add(x, y);
+    expected = new(num, 1.0, 0.0);
+    code = test(count, "4 + (-3)", computed, expected);
+    delete(x), delete(y), delete(expected);
+    if (code == 1) exit(1);
+    count++;
     
-	return 0;
+	return (count-1);
 }
