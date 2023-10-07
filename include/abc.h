@@ -28,9 +28,18 @@
 struct ABC
 {
     size_t size;
-	void* (* ctor)  (void* self, va_list* app);
-	void* (* dtor)  (void* self);
-	void* (* clone) (const void* self);
+    /**
+     * Constructor
+     */
+    void* (* ctor)  (void* self, va_list* app);
+    /**
+     * Destructor
+     */
+	void* (* dtor)  (void* self); 
+    /**
+     * Clone object
+     */
+	void* (* clone) (const void* self); 
 };
 
 #endif /* __ABC_H__ */

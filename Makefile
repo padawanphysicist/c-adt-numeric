@@ -4,7 +4,7 @@ TESTS_DIR:=tests
 
 CC = gcc
 INCFLAGS=$(foreach d, $(INC_DIR), -I$d)
-CFLAGS = -std=c89 -Wall -Wextra -O2 -g
+CFLAGS = -ansi -Wall -Wextra -Werror -pedantic
 LDFLAGS = -lm
 
 SRCS := $(wildcard $(SRC_DIR)/*.c)

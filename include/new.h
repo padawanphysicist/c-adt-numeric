@@ -24,15 +24,27 @@
 
 #include <stddef.h>
 
+/**
+ * Attempts to allocate and initialize an object
+ */
 void*
 new (const void* class, ...);
 
+/**
+ * Deallocate the memory allocated by the new() function
+ */
 void
 delete (void* item);
 
+/**
+ * Copy constructor
+ */
 void*
 clone (const void* self);
 
+/**
+ * Size in bytes of the object
+ */
 size_t
 size_of (const void* self);
 

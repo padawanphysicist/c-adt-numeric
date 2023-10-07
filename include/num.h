@@ -23,14 +23,8 @@
 #ifndef __NUM_H__
 #define __NUM_H__
 
-#include <stdbool.h>
-
 /**
- * This should be used in the initialization of the variable:
- * @example 
- * This is an example of how to use the Example_Test class.
- * More details about this example.
- * 
+ * This should be used in the initialization of the variable
  */
 extern const void* num;
 
@@ -43,49 +37,49 @@ extern const void* num;
 typedef void* num_t;
 
 /**
- * Returns the real part of the number.
+ * Returns the real part of \p _self (\f$x\f$), \f$\mathrm{Re}(x)\f$.
  */
 num_t
 num_real_part (const num_t _self);
 
 /**
- * Returns the imaginary part of the number.
+ * Returns the imaginary part of \p _self (\f$x\f$), \f$\mathrm{Im}(x)\f$.
  */
 num_t
 num_imag_part (const num_t _self);
 
 /**
- * Returns the complex conjugate of the number.
+ * Returns the complex conjugate of \p _self (\f$x\f$), \f$x^\ast\f$.
  */
 num_t
 num_conjugate (const num_t _self);
 
 /**
- * Returns the negative of the number.
+ * Returns the negative of \p _self (\f$x\f$), \f$-x\f$.
  */
 num_t
 num_negative (const num_t _self);
 
 /**
- * returns the addition of \p _self and \p _other, \f$z = x + y\f$.
+ * returns the addition of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x + y\f$.
  */
 num_t
 num_add (const num_t _self, const num_t _other);
 
 /**
- * returns the subtraction of numbers \p x and \p y, \f$z = x - y\f$.
+ * returns the subtraction of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x - y\f$.
  */
 num_t
 num_sub (const num_t _self, const num_t _other);
 
 /**
- * returns the multiplication of numbers \p x and \p y, \f$z = xy\f$.
+ * returns the multiplication of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x\cdot y\f$.
  */
 num_t
 num_mul (const num_t _self, const num_t _other);
 
 /**
- * returns the division of numbers \p x and \p y, \f$z = x/y\f$.
+ * returns the division of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x/y\f$.
  */
 num_t
 num_div (const num_t _self, const num_t _other);
@@ -97,8 +91,8 @@ void
 num_to_double (double* res, const num_t _self);
 
 /**
- * This function determines whether x and y are approximately equal to a
- * relative accuracy
+ * This function determines whether \p _self (\f$x\f$) and \p _other (\f$y\f$),
+ * are approximately equal to a relative accuracy.
  */
 int
 num_eq (const num_t _self, const num_t _other);
