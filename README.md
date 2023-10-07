@@ -14,3 +14,5 @@ None, except for a C compiler (C89 works fine).
 
 
 
+Get tests from
+https://github.com/infusion/Complex.js/blob/master/tests/complex.test.js
