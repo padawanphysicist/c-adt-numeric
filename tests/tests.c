@@ -78,6 +78,15 @@ int main (void)
     if (code == 1) exit(1);
     id++;
 
+    x = new(num, 0.0, +3.0);
+    y = new(num, 0.0, -2.0);
+    computed = num_sub(x, y);
+    expected = new(num, 0.0, +5.0);
+    code = test(id, "num_sub((0.0, +3.0), (0.0, -2.0))", computed, expected);
+    delete(x), delete(y), delete(expected);
+    if (code == 1) exit(1);
+    id++;
+
 
     return (id-1); /* Return the number of passed tests */
 
