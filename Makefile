@@ -2,31 +2,43 @@ CC = gcc
 CFLAGS:= -std=c99 \
 	-Wall \
 	-Wextra \
-	-pedantic \
-	-DM_PI=3.14159265358979323846 \
-	-D_TOLERANCE=1e-7
-LOGFLAGS = -DLOG_USE_COLOR
-LDFLAGS = -lm
-UNITYFLAGS = -DUNITY_INCLUDE_DOUBLE
+	-pedantic
 
-INCDIR =  ./unity/src $(shell find ./ -type f -name '*.h' -and -not -wholename './unity/*' -exec dirname {} \; | sort | uniq)
+# For logging
+LOGGING_CFLAGS = -DLOG_USE_COLOR
+LOGGING_SRCS=./logging/src/log.c
+LOGGING_INCDIR=./logging/src
+
+# For Unity
+UNITY_CFLAGS = -DUNITY_INCLUDE_DOUBLE
+UNITY_SRCS=./unity/src/unity.c
+UNITY_INCDIR=./unity/src/
+
+# For numeric
+NUMERIC_CFLAGS = -DM_PI=3.14159265358979323846 -D_TOLERANCE=1e-7
+NUMERIC_SRCS=$(shell find ./src/ -type f -name '*.c')
+NUMERIC_INCDIR=./src/
+NUMERIC_LDFLAGS = -lm
+
+INCDIR = $(LOGGING_INCDIR) $(UNITY_INCDIR) $(NUMERIC_INCDIR) 
 INCFLAGS=$(foreach d,$(INCDIR),-I$d)
+CFLAGS+=$(LOGGING_CFLAGS) $(UNITY_CFLAGS) $(NUMERIC_CFLAGS)
+LDFLAGS+=$(NUMERIC_LDFLAGS)
 
 all: test.out
 
-UNITYSRCS=$(shell find ./unity/src -type f -name '*.c')
-SRCS := $(shell find ./ -type f -name '*.c' -and -not -wholename './unity*') $(UNITYSRCS)
+SRCS := $(LOGGING_SRCS) $(UNITY_SRCS) $(NUMERIC_SRCS) ./test/test.c
 OBJS := $(SRCS:%.c=%.o)
 
-#all: $(TESTS_DIR)/tests.exe
 .PHONY: test
 test: test.out
 	./test.out
+
 test.out: $(OBJS)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(INCFLAGS) $(CFLAGS) $(LOGFLAGS) $(UNITYFLAGS) -c $^ -o $@
+	$(CC) $(INCFLAGS) $(CFLAGS) -c $^ -o $@
 
 .PHONY: doc
 doc: Doxyfile
