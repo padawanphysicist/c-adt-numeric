@@ -1,40 +1,40 @@
-SRC_DIR ?= src
-INC_DIR ?= include rep
-TESTS_DIR:=tests
-
 CC = gcc
-INCFLAGS=$(foreach d, $(INC_DIR), -I$d)
-CFLAGS = -ansi -Wall -Wextra -Werror -pedantic
+CFLAGS:= -std=c99 \
+	-Wall \
+	-Wextra \
+	-pedantic \
+	-DM_PI=3.14159265358979323846 \
+	-D_TOLERANCE=1e-7
+LOGFLAGS = -DLOG_USE_COLOR
 LDFLAGS = -lm
+UNITYFLAGS = -DUNITY_INCLUDE_DOUBLE
 
-SRCS := $(wildcard $(SRC_DIR)/*.c)
-OBJS := $(SRCS:%.c=%.o) $(SRC_TARGETS:%.c=%.o)
+INCDIR =  ./unity/src $(shell find ./ -type f -name '*.h' -and -not -wholename './unity/*' -exec dirname {} \; | sort | uniq)
+INCFLAGS=$(foreach d,$(INCDIR),-I$d)
+
+all: test.out
+
+UNITYSRCS=$(shell find ./unity/src -type f -name '*.c')
+SRCS := $(shell find ./ -type f -name '*.c' -and -not -wholename './unity*') $(UNITYSRCS)
+OBJS := $(SRCS:%.c=%.o)
+
+#all: $(TESTS_DIR)/tests.exe
+.PHONY: test
+test: test.out
+	./test.out
+test.out: $(OBJS)
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) $(INCFLAGS) -c $^ -o $@
-
-all: $(TESTS_DIR)/tests.exe
-
-.PHONY: update-tests
-create-tests:
-	cd $(TESTS_DIR) && guile -e main -s create_test -i tests.json -o tests.c
-
-.PHONY: test
-test: $(TESTS_DIR)/tests.exe
-	@cd $(TESTS_DIR) && (./tests.exe || echo "Passed $$? from $$(cat tests.json | jq '. | length')" )
-$(TESTS_DIR)/tests.o: $(TESTS_DIR)/tests.c
-	$(CC) $(INCFLAGS) -c $^ -o $@
-$(TESTS_DIR)/tests.exe: $(OBJS) $(TESTS_DIR)/tests.o
-	$(CC) $^ -o $@ $(LDFLAGS)
+	$(CC) $(INCFLAGS) $(CFLAGS) $(LOGFLAGS) $(UNITYFLAGS) -c $^ -o $@
 
 .PHONY: doc
 doc: Doxyfile
 	mkdir -p doc/
 	doxygen
 
-.PHONY: clean clean-all
+.PHONY: clean
 clean:
 	find . -iname "*.o" -type f -delete
 clean-all: clean
-	find . -iname "*.exe" -type f -delete
-	rm -rf tests/tests.c
+	find . -iname "*.out" -type f -delete

@@ -20,13 +20,17 @@
  * @brief Implementation of the Abstract Data Type (ADT).
  */
 #include <assert.h>
-#include <stdlib.h>
 #include <math.h>
-#include <assert.h>
+#include <stdlib.h>
 
-#include "num.h"
-#include "new.h"
 #include "abc.h"
+#include "new.h"
+#include "num.h"
+#include "log.h"
+
+#ifndef _TOLERANCE
+#define _TOLERANCE 1.0e-8
+#endif
 
 #define NCOMP 2
 
@@ -78,6 +82,8 @@ const void * num = & _num;
 /****************************/
 /* User interface functions */
 /****************************/
+
+/* Accessors: Real and Imaginary parts */
 num_t
 num_real_part (const num_t _self)
 {
@@ -94,12 +100,68 @@ num_imag_part (const num_t _self)
 	return new(num, self->dat[1], 0.0);
 }
 
-num_t
-num_conjugate (const num_t _self)
+/* Predicates */
+int
+num_is_zero (const num_t _self)
 {
-    const struct num * self = _self;
-    
-	return new(num, self->dat[0], -1 * self->dat[1]);
+    const struct num* self = _self;
+
+    return ((fabs(self->dat[0]) < _TOLERANCE) && (fabs(self->dat[1]) < _TOLERANCE));
+}
+
+int
+num_is_real (const num_t _self)
+{
+    num_t im = num_imag_part(_self);
+    const int ret = num_is_zero(im);
+    delete(im);
+
+    return ret;    
+}
+
+/* Type casting */
+
+double
+num_to_double (const num_t _self)
+{
+    const struct num* self = _self;
+      
+    if (num_is_real(_self))
+    {
+        return self->dat[0];
+    }
+
+    return NAN;
+}
+
+void
+num_to_pair (double* res, const num_t _self)
+{
+    const struct num* self = _self;
+
+    for (int i = 0; i < NCOMP; i++)
+        res[i] = self->dat[i];
+}
+
+/* Unary operations */
+num_t
+num_abs2 (const num_t _self)
+{
+    const struct num* self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, x*x + y*y, 0.0);
+}
+
+num_t
+num_abs (const num_t _self)
+{
+    const struct num* self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, hypot(x, y), 0.0);
 }
 
 num_t
@@ -109,6 +171,81 @@ num_negative (const num_t _self)
     
 	return new(num, -1 * self->dat[0], -1 * self->dat[1]);
 }
+
+num_t
+num_conjugate (const num_t _self)
+{
+    const struct num * self = _self;
+    
+	return new(num, self->dat[0], -1 * self->dat[1]);
+}
+
+num_t
+num_arg (const num_t _self)
+{
+    const struct num * self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, atan2(y, x), 0.0);
+}
+
+num_t
+num_sqrt (const num_t _self)
+{
+    const double sqrt_r = sqrt(num_to_double(num_abs(_self)));
+    const double half_arg_z = 0.5 * num_to_double(num_arg(_self));
+
+    return new(num, sqrt_r * cos(half_arg_z), sqrt_r * sin(half_arg_z));     
+}
+
+num_t
+num_exp (const num_t _self)
+{
+    const struct num * self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, exp(x)*cos(y), exp(x)*sin(y));
+}
+
+num_t
+num_log (const num_t _self)
+{
+    const struct num * self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+    const double _abs = hypot(x, y);
+    const double _th = atan2(y, x);
+
+    return new(num, log(_abs), _th);
+}
+
+/* sin(x+iy) = sin(x) cosh(y) + i cos(x) sinh(y)) */
+num_t
+num_sin (const num_t _self)
+{
+    const struct num * self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, sin(x) * cosh(y), cos(x) * sinh(y));
+}
+
+/* cos(x+iy)=cos(x) cosh(y) − i sin(x) sinh(y) */
+num_t
+num_cos (const num_t _self)
+{
+    const struct num * self = _self;
+    const double x = self->dat[0];
+    const double y = self->dat[1];
+
+    return new(num, cos(x) * cosh(y), -1 * sin(x) * sinh(y));
+}
+
+/* Binary operations */
+
+/* Arithmetic */
 
 num_t
 num_add (const num_t _self, const num_t _other)
@@ -158,27 +295,15 @@ num_div (const num_t _self, const num_t _other)
     return new(num, (a * c + b * d)/abs2_other, (b * c - a * d)/abs2_other);
 }
 
-void
-num_to_double (double* res, const num_t _self)
-{
-    const struct num* self = _self;
-
-    for (int i = 0; i < NCOMP; i++)
-        res[i] = self->dat[i];
-}
+/* Logical */
 
 int
 num_eq (const num_t _self, const num_t _other)
 {
-    const struct num* self  = _self;
-    const struct num* other = _other;
+    const double eps = num_to_double(num_abs(num_sub(_self, _other)));
     
-    const double a = self->dat[0];
-    const double b = self->dat[1];
-    const double c = other->dat[0];
-    const double d = other->dat[1];
-
-    const double eps = 1e-8;
-
-    return (fabs(a-c) < eps && fabs(b-d) < eps);
+    return fabs(eps) < _TOLERANCE;
 }
+#ifdef _TOLERANCE
+#undef _TOLERANCE
+#endif

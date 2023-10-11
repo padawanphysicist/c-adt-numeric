@@ -36,6 +36,13 @@ extern const void* num;
  */
 typedef void* num_t;
 
+num_t
+num_zero (void);
+
+/***************************************/
+/* Accessors: Real and Imaginary parts */
+/***************************************/
+
 /**
  * Returns the real part of \p _self (\f$x\f$), \f$\mathrm{Re}(x)\f$.
  */
@@ -48,6 +55,57 @@ num_real_part (const num_t _self);
 num_t
 num_imag_part (const num_t _self);
 
+/**************/
+/* Predicates */
+/**************/
+
+/**
+ * Returns nonzero iff \p _self is zero, within tolerance.
+ */
+int
+num_is_zero (const num_t _self);
+
+/**
+ * Returns nonzero iff \p _self has a zero imaginary part.
+ */
+int
+num_is_real (const num_t _self);
+
+/****************/
+/* Type casting */
+/****************/
+
+/**
+ * Converts numeric types to machine's double.
+ */
+double
+num_to_double (const num_t _self);
+
+void
+num_to_pair (double* res, const num_t _self);
+
+/********************/
+/* Unary operations */
+/********************/
+
+/**
+ * Returns the square of absolute value of \p _self (\f$x\f$), \f$|x|\f$.
+ */
+num_t
+num_abs2 (const num_t _self);
+
+/**
+ * Returns the absolute value of \p _self (\f$x\f$), \f$|x|\f$.
+ */
+num_t
+num_abs (const num_t _self);
+
+/**
+ * Returns the negative of \p _self (\f$x\f$), \f$-x\f$.
+ */
+num_t
+num_negative (const num_t _self);
+
 /**
  * Returns the complex conjugate of \p _self (\f$x\f$), \f$x^\ast\f$.
  */
@@ -55,10 +113,48 @@ num_t
 num_conjugate (const num_t _self);
 
 /**
- * Returns the negative of \p _self (\f$x\f$), \f$-x\f$.
+ * Returns the argument of \p _self (\f$x\f$), \f$\mathrm{arg}(x)\f$.
  */
 num_t
-num_negative (const num_t _self);
+num_arg (const num_t _self);
+
+/**
+ * Returns the square root of the number
+ */
+num_t
+num_sqrt (const num_t _self);
+
+/**
+ * Returns the exponential of the number
+ */
+num_t
+num_exp (const num_t _self);
+
+/**
+ * Returns the logarithm of the number
+ */
+num_t
+num_log (const num_t _self);
+
+/**
+ * Returns the sine of the number
+ */
+num_t
+num_sin (const num_t _self);
+
+/**
+ * Returns the cosine of the number
+ */
+num_t
+num_cos (const num_t _self);
+
+/*********************/
+/* Binary operations */
+/*********************/
+
+/**************/
+/* Arithmetic */
+/**************/
 
 /**
  * returns the addition of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x + y\f$.
@@ -84,11 +180,9 @@ num_mul (const num_t _self, const num_t _other);
 num_t
 num_div (const num_t _self, const num_t _other);
 
-/**
- * Converts numeric types to machine's double.
- */
-void
-num_to_double (double* res, const num_t _self);
+/***********/
+/* Logical */
+/***********/
 
 /**
  * This function determines whether \p _self (\f$x\f$) and \p _other (\f$y\f$),
