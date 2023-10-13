@@ -18,6 +18,7 @@ var num_8c =
     [ "num_log", "num_8c.html#a5cc3347dc75efca82a85f5908aa5a12f", null ],
     [ "num_mul", "num_8c.html#a6473ee0d09418ce73b47b19252f511f0", null ],
     [ "num_negative", "num_8c.html#aef8f4905db1773830ec5a8d291ff4f37", null ],
+    [ "num_pow", "num_8c.html#a4c0e48fa791fde480289c2e4fe068052", null ],
     [ "num_real_part", "num_8c.html#a7f8724d10b598f4f8d29ada9010bb334", null ],
     [ "num_sin", "num_8c.html#a45053051eb7eac0b946d14f96234c810", null ],
     [ "num_sqrt", "num_8c.html#a4bc24760b850849b6e95057a4b8b52eb", null ],
