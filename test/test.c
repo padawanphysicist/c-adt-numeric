@@ -378,6 +378,28 @@ test_num_eq (void)
     TEST_ASSERT_MESSAGE( ret == 1 , "3+4i is not equal to itself (?)");
 }
 
+void
+test_num_lt (void)
+{
+    num_t x = new(num, 2.0, 0.0);
+    num_t y = new(num, 3.0, 0.0); 
+    const int ret = num_lt(x, y);
+    delete(x), delete(y);
+    
+    TEST_ASSERT_MESSAGE( ret == 1 , "2 >= 3 (?)");
+}
+
+void
+test_num_gt (void)
+{
+    num_t x = new(num, 5.0, 0.0);
+    num_t y = new(num, 3.0, 0.0); 
+    const int ret = num_gt(x, y);
+    delete(x), delete(y);
+    
+    TEST_ASSERT_MESSAGE( ret == 1 , "5 <= 3 (?)");
+}
+
 int
 main (void)
 {
@@ -425,6 +447,8 @@ main (void)
     RUN_TEST(test_num_pow_cmplx);
             
     RUN_TEST(test_num_eq);
+    RUN_TEST(test_num_lt);
+    RUN_TEST(test_num_gt);
 
 
     

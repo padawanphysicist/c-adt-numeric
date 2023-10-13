@@ -320,6 +320,45 @@ num_eq (const num_t _self, const num_t _other)
     
     return fabs(eps) < _TOLERANCE;
 }
+
+int
+num_lt (const num_t _self, const num_t _other)
+{
+    if (num_is_real(_self) && num_is_real(_other))
+    {
+        const double x = num_to_double(num_sub(_self, _other));
+
+        return x < 0;
+    }
+
+    return 0;
+}
+
+int
+num_gt (const num_t _self, const num_t _other)
+{
+    if (num_is_real(_self) && num_is_real(_other))
+    {
+        const double x = num_to_double(num_sub(_self, _other));
+
+        return x > 0;
+    }
+
+    return 0;
+}
+
+int
+num_le (const num_t _self, const num_t _other)
+{   
+    return num_lt(_self, _other) || num_eq(_self, _other);
+}
+
+int
+num_ge (const num_t _self, const num_t _other)
+{
+    return num_gt(_self, _other) || num_eq(_self, _other);
+}
+
 #ifdef _TOLERANCE
 #undef _TOLERANCE
 #endif

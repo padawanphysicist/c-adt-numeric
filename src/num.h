@@ -197,4 +197,16 @@ num_pow (const num_t _self, const num_t _other);
 int
 num_eq (const num_t _self, const num_t _other);
 
+int
+num_gt (const num_t _self, const num_t _other);
+
+int
+num_lt (const num_t _self, const num_t _other);
+
+int
+num_ge (const num_t _self, const num_t _other);
+
+int
+num_le (const num_t _self, const num_t _other);
+
 #endif /* __NUM_H__ */
