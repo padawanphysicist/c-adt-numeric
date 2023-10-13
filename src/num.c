@@ -296,6 +296,13 @@ num_div (const num_t _self, const num_t _other)
 }
 
 num_t
+num_fmod (const num_t _self, const num_t _other)
+{
+    assert(num_is_real(_self) && num_is_real(_other));
+    return new(num, fmod(num_to_double(_self), num_to_double(_other)), 0.0);
+}
+
+num_t
 num_pow (const num_t _self, const num_t _other)
 {
     const struct num* other = _other;
@@ -324,38 +331,30 @@ num_eq (const num_t _self, const num_t _other)
 int
 num_lt (const num_t _self, const num_t _other)
 {
-    if (num_is_real(_self) && num_is_real(_other))
-    {
-        const double x = num_to_double(num_sub(_self, _other));
-
-        return x < 0;
-    }
-
-    return 0;
+    assert(num_is_real(_self) && num_is_real(_other));
+    const double x = num_to_double(num_sub(_self, _other));
+    return x < 0;
 }
 
 int
 num_gt (const num_t _self, const num_t _other)
 {
-    if (num_is_real(_self) && num_is_real(_other))
-    {
-        const double x = num_to_double(num_sub(_self, _other));
-
-        return x > 0;
-    }
-
-    return 0;
+    assert(num_is_real(_self) && num_is_real(_other));
+    const double x = num_to_double(num_sub(_self, _other));
+    return x > 0;
 }
 
 int
 num_le (const num_t _self, const num_t _other)
-{   
+{
+    assert(num_is_real(_self) && num_is_real(_other));
     return num_lt(_self, _other) || num_eq(_self, _other);
 }
 
 int
 num_ge (const num_t _self, const num_t _other)
 {
+    assert(num_is_real(_self) && num_is_real(_other));
     return num_gt(_self, _other) || num_eq(_self, _other);
 }
 

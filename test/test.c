@@ -340,6 +340,17 @@ test_num_div (void)
 }
 
 void
+test_num_fmod (void)
+{
+    num_t x = new(num, 9.2, 0.0);
+    num_t y = new(num, 2.0, 0.0);
+    const double ret = num_to_double(num_fmod(x, y));
+    delete(x), delete(y);
+
+    TEST_ASSERT_EQUAL_DOUBLE( 1.2, ret );
+}
+
+void
 test_num_pow (void)
 {
     num_t x = new(num, 3.0, 4.0);
@@ -443,6 +454,7 @@ main (void)
     RUN_TEST(test_num_sub);
     RUN_TEST(test_num_mul);
     RUN_TEST(test_num_div);
+    RUN_TEST(test_num_fmod);
     RUN_TEST(test_num_pow);
     RUN_TEST(test_num_pow_cmplx);
             
