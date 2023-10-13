@@ -180,6 +180,12 @@ num_mul (const num_t _self, const num_t _other);
 num_t
 num_div (const num_t _self, const num_t _other);
 
+/**
+ * returns the exponentiation of \p _self (\f$x\f$) to \p _other (\f$y\f$), \f$x^y\f$.
+ */
+num_t
+num_pow (const num_t _self, const num_t _other);
+
 /***********/
 /* Logical */
 /***********/

@@ -340,6 +340,34 @@ test_num_div (void)
 }
 
 void
+test_num_pow (void)
+{
+    num_t x = new(num, 3.0, 4.0);
+    num_t y = new(num, 2.0, 0.0);
+    num_t z = num_pow(x, y);
+    const double re = num_to_double(num_real_part(z));
+    const double im = num_to_double(num_imag_part(z));
+    delete(x), delete(y), delete(z);
+
+    TEST_ASSERT_EQUAL_DOUBLE( -7.0, re );       
+    TEST_ASSERT_EQUAL_DOUBLE( 24.0, im );
+}
+
+void
+test_num_pow_cmplx (void)
+{
+    num_t x = new(num, 3.0, 4.0);
+    num_t y = new(num, 0.0, 2.0);
+    num_t z = num_pow(x, y);
+    const double re = num_to_double(num_real_part(z));
+    const double im = num_to_double(num_imag_part(z));
+    delete(x), delete(y), delete(z);
+
+    TEST_ASSERT_EQUAL_DOUBLE( -0.156049852140608, re );       
+    TEST_ASSERT_EQUAL_DOUBLE( -0.0120840952149667, im );
+}
+
+void
 test_num_eq (void)
 {
     num_t x = new(num, 3.0, 4.0);
@@ -393,6 +421,8 @@ main (void)
     RUN_TEST(test_num_sub);
     RUN_TEST(test_num_mul);
     RUN_TEST(test_num_div);
+    RUN_TEST(test_num_pow);
+    RUN_TEST(test_num_pow_cmplx);
             
     RUN_TEST(test_num_eq);
 

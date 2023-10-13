@@ -295,6 +295,22 @@ num_div (const num_t _self, const num_t _other)
     return new(num, (a * c + b * d)/abs2_other, (b * c - a * d)/abs2_other);
 }
 
+num_t
+num_pow (const num_t _self, const num_t _other)
+{
+    const struct num* other = _other;
+
+    const double r = num_to_double(num_abs(_self));
+    const double th = num_to_double(num_arg(_self));
+    const double a = other->dat[0];
+    const double b = other->dat[1];
+
+    const double pow_r = pow(r, a) * exp(-th * b);
+    const double scale_arg_z = a * th + b * log(r);
+
+    return new(num, pow_r * cos(scale_arg_z), pow_r * sin(scale_arg_z));
+}
+
 /* Logical */
 
 int
