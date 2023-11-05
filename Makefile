@@ -6,18 +6,18 @@ CFLAGS:= -std=c99 \
 
 # For logging
 LOGGING_CFLAGS = -DLOG_USE_COLOR
-LOGGING_SRCS=./logging/src/log.c
-LOGGING_INCDIR=./logging/src
+LOGGING_SRCS=./modules/log.c/src/log.c
+LOGGING_INCDIR=./modules/log.c/src
 
 # For Unity
 UNITY_CFLAGS = -DUNITY_INCLUDE_DOUBLE
-UNITY_SRCS=./unity/src/unity.c
-UNITY_INCDIR=./unity/src/
+UNITY_SRCS=./modules/Unity/src/unity.c
+UNITY_INCDIR=./modules/Unity/src/
 
 # For numeric
 NUMERIC_CFLAGS = -DM_PI=3.14159265358979323846 -D_TOLERANCE=1e-7
 NUMERIC_SRCS=$(shell find ./src/ -type f -name '*.c')
-NUMERIC_INCDIR=./src/
+NUMERIC_INCDIR=./src/ ./include/
 NUMERIC_LDFLAGS = -lm
 
 INCDIR = $(LOGGING_INCDIR) $(UNITY_INCDIR) $(NUMERIC_INCDIR) 

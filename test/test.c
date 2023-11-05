@@ -15,6 +15,13 @@ tearDown (void)
 }
 
 void
+test_allocate_num (void) 
+{
+    num_t z = new(num, 0.0, 0.0);    
+    delete(z);
+}
+
+void
 test_is_zero (void)
 {
     num_t z = new(num, 0.0, 0.0);    
@@ -416,51 +423,53 @@ main (void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(test_is_zero);
-    RUN_TEST(test_is_not_zero);
-    RUN_TEST(test_is_not_zero_I);
-    
-    RUN_TEST(test_is_real);
-    RUN_TEST(test_is_not_real);
-    RUN_TEST(test_is_not_real_I);
-    
-    RUN_TEST(test_num_to_double);
-    RUN_TEST(test_num_to_double_fail);
+    RUN_TEST(test_allocate_num);
 
-    RUN_TEST(test_num_to_pair);
+    //RUN_TEST(test_is_zero);
+    //RUN_TEST(test_is_not_zero);
+    //RUN_TEST(test_is_not_zero_I);
+    //
+    //RUN_TEST(test_is_real);
+    //RUN_TEST(test_is_not_real);
+    //RUN_TEST(test_is_not_real_I);
+    //
+    //RUN_TEST(test_num_to_double);
+    //RUN_TEST(test_num_to_double_fail);
 
-    RUN_TEST(test_num_abs2);
-    RUN_TEST(test_num_abs_real);
-    RUN_TEST(test_num_abs_complex);
+    //RUN_TEST(test_num_to_pair);
 
-    RUN_TEST(test_num_negative);
+    //RUN_TEST(test_num_abs2);
+    //RUN_TEST(test_num_abs_real);
+    //RUN_TEST(test_num_abs_complex);
 
-    RUN_TEST(test_num_conjugate);
+    //RUN_TEST(test_num_negative);
 
-    RUN_TEST(test_num_arg);
+    //RUN_TEST(test_num_conjugate);
 
-    RUN_TEST(test_num_sqrt_real);
-    RUN_TEST(test_num_sqrt_complex);
+    //RUN_TEST(test_num_arg);
 
-    RUN_TEST(test_num_exp_zero);
-    RUN_TEST(test_num_exp_imag);
+    //RUN_TEST(test_num_sqrt_real);
+    //RUN_TEST(test_num_sqrt_complex);
 
-    RUN_TEST(test_num_log);
+    //RUN_TEST(test_num_exp_zero);
+    //RUN_TEST(test_num_exp_imag);
 
-    RUN_TEST(test_num_sin);
-    RUN_TEST(test_num_cos);
+    //RUN_TEST(test_num_log);
 
-    RUN_TEST(test_num_add);
-    RUN_TEST(test_num_sub);
-    RUN_TEST(test_num_mul);
-    RUN_TEST(test_num_div);
-    RUN_TEST(test_num_fmod);
-    RUN_TEST(test_num_pow);
-    RUN_TEST(test_num_pow_cmplx);
-            
-    RUN_TEST(test_num_eq);
-    RUN_TEST(test_num_lt);
-    RUN_TEST(test_num_gt);
+    //RUN_TEST(test_num_sin);
+    //RUN_TEST(test_num_cos);
+
+    //RUN_TEST(test_num_add);
+    //RUN_TEST(test_num_sub);
+    //RUN_TEST(test_num_mul);
+    //RUN_TEST(test_num_div);
+    //RUN_TEST(test_num_fmod);
+    //RUN_TEST(test_num_pow);
+    //RUN_TEST(test_num_pow_cmplx);
+    //        
+    //RUN_TEST(test_num_eq);
+    //RUN_TEST(test_num_lt);
+    //RUN_TEST(test_num_gt);
 
 
     

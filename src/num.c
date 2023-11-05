@@ -46,6 +46,7 @@ num_ctor (void* _self, va_list* app)
 	
 	self->dat = malloc(NCOMP*sizeof(double));
 	assert(self->dat);
+   log_trace("Allocated = %s, %p[%li]", __func__, self->dat, NCOMP*sizeof(double));
 
     for (int i = 0; i < NCOMP; i++)
     {
@@ -61,6 +62,7 @@ num_dtor (void* _self)
 {
     struct num* self = _self;
 
+   log_trace("Freeing = %s, %p[%li]", __func__, self->dat, NCOMP*sizeof(double));
 	free(self->dat), self->dat = NULL;
 	return self;
 }
