@@ -1,18 +1,18 @@
 /*
- * This file is part of c-adt-numeric (https://github.com/padawanphysicist/c-adt-numeric).
+ * This file is part of num.c (https://github.com/padawanphysicist/num.c).
  *
- * c-adt-numeric is free software: you can redistribute it and/or modify it
+ * num.c is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation, either version 3 of the License, or (at your option) any
  * later version.
  *
- * c-adt-numeric is distributed in the hope that it will be useful, but WITHOUT
+ * num.c is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * c-adt-numeric. If not, see <https://www.gnu.org/licenses/>.
+ * num.c. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /** 
@@ -27,7 +27,7 @@
 /**
  * Attempts to allocate and initialize an object
  */
-void*
+void *
 new (const void* class, ...);
 
 /**
@@ -37,10 +37,10 @@ void
 delete (void* item);
 
 /**
- * Copy constructor
+ * Copy objects
  */
-void*
-clone (const void* self);
+/* void * */
+/* clone (const void* self); */
 
 /**
  * Size in bytes of the object

@@ -18,7 +18,7 @@ UNITY_INCDIR=./modules/Unity/src/
 NUMERIC_CFLAGS = -DM_PI=3.14159265358979323846 -D_TOLERANCE=1e-7
 NUMERIC_SRCS=$(shell find ./src/ -type f -name '*.c')
 NUMERIC_INCDIR=./src/ ./include/
-NUMERIC_LDFLAGS = -lm
+NUMERIC_LDFLAGS = -lm -larb -lflint -ggdb3
 
 INCDIR = $(LOGGING_INCDIR) $(UNITY_INCDIR) $(NUMERIC_INCDIR) 
 INCFLAGS=$(foreach d,$(INCDIR),-I$d)
@@ -32,7 +32,13 @@ OBJS := $(SRCS:%.c=%.o)
 
 .PHONY: test
 test: test.out
-	./test.out
+	@valgrind \
+	--leak-check=full \
+	--show-leak-kinds=all \
+    --track-origins=yes \
+    --verbose          \
+    --log-file=valgrind-out.txt \
+    ./test.out
 
 test.out: $(OBJS)
 	$(CC) $^ -o $@ $(LDFLAGS)

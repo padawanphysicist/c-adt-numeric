@@ -5,3 +5,4 @@ doc/
 *.exe
 *.x
 *.out
+valgrind-out.txt

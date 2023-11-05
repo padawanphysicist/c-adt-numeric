@@ -1,18 +1,18 @@
 /*
- * This file is part of c-adt-numeric (https://github.com/padawanphysicist/c-adt-numeric).
+ * This file is part of num.c (https://github.com/padawanphysicist/num.c).
  *
- * c-adt-numeric is free software: you can redistribute it and/or modify it
+ * num.c is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation, either version 3 of the License, or (at your option) any
  * later version.
  *
- * c-adt-numeric is distributed in the hope that it will be useful, but WITHOUT
+ * num.c is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * c-adt-numeric. If not, see <https://www.gnu.org/licenses/>.
+ * num.c. If not, see <https://www.gnu.org/licenses/>.
  */
 
 /** 
@@ -23,10 +23,13 @@
 #ifndef __NUM_H__
 #define __NUM_H__
 
+#include <stdbool.h>
+#include <complex.h>
+
 /**
  * This should be used in the initialization of the variable
  */
-extern const void* num;
+extern const void * num;
 
 /**
  * Type associated with the class
@@ -34,7 +37,16 @@ extern const void* num;
  * Objects of this type may directly be created by the user.
  * 
  */
-typedef void* num_t;
+typedef void * num_t;
+
+void
+num_print (const num_t self, const bool endline);
+
+num_t
+num_from_d (const double x);
+
+num_t
+num_from_d_d (const double re, const double im);
 
 num_t
 num_zero (void);
@@ -47,13 +59,13 @@ num_zero (void);
  * Returns the real part of \p _self (\f$x\f$), \f$\mathrm{Re}(x)\f$.
  */
 num_t
-num_real_part (const num_t _self);
+num_real (const num_t self);
 
 /**
  * Returns the imaginary part of \p _self (\f$x\f$), \f$\mathrm{Im}(x)\f$.
  */
 num_t
-num_imag_part (const num_t _self);
+num_imag (const num_t self);
 
 /**************/
 /* Predicates */
@@ -62,13 +74,13 @@ num_imag_part (const num_t _self);
 /**
  * Returns nonzero iff \p _self is zero, within tolerance.
  */
-int
+bool
 num_is_zero (const num_t _self);
 
 /**
  * Returns nonzero iff \p _self has a zero imaginary part.
  */
-int
+bool
 num_is_real (const num_t _self);
 
 /****************/
@@ -79,38 +91,41 @@ num_is_real (const num_t _self);
  * Converts numeric types to machine's double.
  */
 double
-num_to_double (const num_t _self);
+num_to_d (const num_t _self);
 
-void
-num_to_pair (double* res, const num_t _self);
+/* void */
+/* num_to_pair (double* res, const num_t _self); */
+
+double complex
+num_to_complex (const num_t self);
 
 /********************/
 /* Unary operations */
 /********************/
 
 /**
- * Returns the square of absolute value of \p _self (\f$x\f$), \f$|x|\f$.
- */
-num_t
-num_abs2 (const num_t _self);
-
-/**
  * Returns the absolute value of \p _self (\f$x\f$), \f$|x|\f$.
  */
 num_t
-num_abs (const num_t _self);
+num_abs (const num_t self);
 
 /**
  * Returns the negative of \p _self (\f$x\f$), \f$-x\f$.
  */
 num_t
-num_negative (const num_t _self);
+num_neg (const num_t self);
+
+num_t
+num_inv (const num_t self);
 
 /**
  * Returns the complex conjugate of \p _self (\f$x\f$), \f$x^\ast\f$.
  */
 num_t
-num_conjugate (const num_t _self);
+num_conj (const num_t self);
+
+num_t
+num_ceil (const num_t self);
 
 /**
  * Returns the argument of \p _self (\f$x\f$), \f$\mathrm{arg}(x)\f$.
@@ -200,19 +215,33 @@ num_pow (const num_t _self, const num_t _other);
  * This function determines whether \p _self (\f$x\f$) and \p _other (\f$y\f$),
  * are approximately equal to a relative accuracy.
  */
-int
+bool
 num_eq (const num_t _self, const num_t _other);
 
-int
+bool
 num_gt (const num_t _self, const num_t _other);
 
-int
+bool
 num_lt (const num_t _self, const num_t _other);
 
-int
+bool
 num_ge (const num_t _self, const num_t _other);
 
-int
+bool
 num_le (const num_t _self, const num_t _other);
+
+/*********************/
+/* Special functions */
+/*********************/
+
+num_t
+num_erf (const num_t self);
+
+num_t
+num_erfc (const num_t self);
+
+num_t
+num_rgamma (const num_t self);
+    
 
 #endif /* __NUM_H__ */
