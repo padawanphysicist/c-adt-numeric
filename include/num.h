@@ -25,6 +25,7 @@
 
 #include <stdbool.h>
 #include <complex.h>
+#include <stdarg.h>
 
 /**
  * This should be used in the initialization of the variable
@@ -242,6 +243,12 @@ num_erfc (const num_t self);
 
 num_t
 num_rgamma (const num_t self);
+
+void
+num_cpy (num_t* self, const num_t other);
+
+num_t
+num_max (int count, ...);
     
 
 #endif /* __NUM_H__ */

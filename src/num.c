@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <complex.h>
+#include <stdarg.h>
 
 #include "abc.h"
 #include "new.h"
@@ -39,6 +40,7 @@
 /* #endif */
 
 //#define NCOMP 2
+
 
 #define PREC 53
 
@@ -131,6 +133,17 @@ num_from_acb (const acb_t z)
     
     return num_from_d_d(re, im);
 }
+
+static num_t _arb_minus_infinity (void)
+{
+    arb_t x;
+    arb_init(x);
+    arb_neg_inf(x);
+    num_t res = num_from_arb(x);
+    arb_clear(x);
+    return res;
+}
+
 
 /* Input and Output */
 void
@@ -705,4 +718,35 @@ num_rgamma (const num_t self)
     arb_clear(_rgamma_z_re); arb_clear(_rgamma_z_im);
 
     return num_from_d_d(rgamma_z_re, rgamma_z_im);
+}
+
+void
+num_cpy (num_t* self, const num_t other)
+{
+    const struct num * _self = *self;
+    const struct num * _other = other;
+
+    acb_clear(_self -> z);
+    acb_init(_self -> z);
+    acb_set(_self -> z, _other -> z);
+}
+
+num_t
+num_max (int count, ...)
+{
+    va_list ap;
+    num_t M = _arb_minus_infinity();
+
+    va_start(ap, count); 
+    for (int j = 0; j < count; j++)
+    {
+        num_t n = va_arg(ap, num_t);
+        assert(num_is_real(n));
+        if (num_gt(n, M))
+            num_cpy(&M, n);
+        delete(n);
+    }
+    va_end(ap);
+
+    return M;    
 }

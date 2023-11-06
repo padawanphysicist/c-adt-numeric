@@ -401,6 +401,33 @@ test_num_inv (void)
     TEST_ASSERT_EQUAL_DOUBLE(0.5, ret);
 }
 
+void
+test_num_cpy (void)
+{
+    num_t x = num_from_d_d(2.0, -1.0);
+    num_t y = num_from_d(0.0);
+
+    num_cpy(&y, x);
+    const double complex ret = num_to_complex(y);
+    delete(x), delete(y);
+    
+    TEST_ASSERT_EQUAL_DOUBLE(2.0, creal(ret));
+    TEST_ASSERT_EQUAL_DOUBLE(-1.0, cimag(ret));
+}
+
+void
+test_num_max (void)
+{
+    num_t x = num_from_d(0.0);
+    num_t y = num_from_d(-1.0);
+    num_t z = num_from_d(10.0);
+    num_t max_xyz = num_max(3, x, y, z);
+    const double ret = num_to_d(max_xyz);
+    delete(x), delete(y), delete(z), delete(max_xyz);
+    
+    TEST_ASSERT_EQUAL_DOUBLE(10.0, ret);
+}
+
 int
 main (void)
 {
@@ -452,6 +479,9 @@ main (void)
 
     RUN_TEST(test_num_ceil);
     RUN_TEST(test_num_inv);
+
+    RUN_TEST(test_num_cpy);
+    RUN_TEST(test_num_max);
 
     return UNITY_END();
 }
