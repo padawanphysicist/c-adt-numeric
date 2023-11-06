@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "acdns",
   1: "an",
   2: "an",
-  3: "cdns",
+  3: "dns",
   4: "cdn",
   5: "n"
 };

@@ -103,7 +103,9 @@ $(document).ready(function(){initNavTree('num_8h.html',''); initResizable(); });
 
 <p>Interface of the Abstract Data Type (ADT).  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;complex.h&gt;</code><br />
+</div>
 <p><a href="num_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -113,30 +115,43 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9ad517da371556c9822f2a27b4601f7d"><td class="memItemLeft" align="right" valign="top"><a id="a9ad517da371556c9822f2a27b4601f7d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>num_print</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self, const bool endline)</td></tr>
+<tr class="separator:a9ad517da371556c9822f2a27b4601f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa08b79462339a97078dad710a408ae12"><td class="memItemLeft" align="right" valign="top"><a id="aa08b79462339a97078dad710a408ae12"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_from_d</b> (const double x)</td></tr>
+<tr class="separator:aa08b79462339a97078dad710a408ae12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001eeacd579437d6bcde8cfcea0c4a36"><td class="memItemLeft" align="right" valign="top"><a id="a001eeacd579437d6bcde8cfcea0c4a36"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_from_d_d</b> (const double re, const double im)</td></tr>
+<tr class="separator:a001eeacd579437d6bcde8cfcea0c4a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace26b5659217bfc95fa4d16fd1affa24"><td class="memItemLeft" align="right" valign="top"><a id="ace26b5659217bfc95fa4d16fd1affa24"></a>
 <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_zero</b> (void)</td></tr>
 <tr class="separator:ace26b5659217bfc95fa4d16fd1affa24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f8724d10b598f4f8d29ada9010bb334"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a7f8724d10b598f4f8d29ada9010bb334">num_real_part</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a7f8724d10b598f4f8d29ada9010bb334"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac968eff949f2d42b4acad1a3871bc1d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#ac968eff949f2d42b4acad1a3871bc1d0">num_imag_part</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:ac968eff949f2d42b4acad1a3871bc1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c1a2db3dc82a3bb5f422897cc05e93c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a1c1a2db3dc82a3bb5f422897cc05e93c">num_is_zero</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a1c1a2db3dc82a3bb5f422897cc05e93c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e2151569e9e108fcd16a7dc1e937ded"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a9e2151569e9e108fcd16a7dc1e937ded">num_is_real</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a9e2151569e9e108fcd16a7dc1e937ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada2d09e8a1a94a020bbd076d3aaca9ea"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#ada2d09e8a1a94a020bbd076d3aaca9ea">num_to_double</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:ada2d09e8a1a94a020bbd076d3aaca9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619ec2bca553eea34da40453a63ac3b7"><td class="memItemLeft" align="right" valign="top"><a id="a619ec2bca553eea34da40453a63ac3b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>num_to_pair</b> (double *res, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a619ec2bca553eea34da40453a63ac3b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d1afb104c96048a84ce3374d3e6da24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a4d1afb104c96048a84ce3374d3e6da24">num_abs2</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a4d1afb104c96048a84ce3374d3e6da24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0d7857385a545507b8d468227ad709d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#af0d7857385a545507b8d468227ad709d">num_abs</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:af0d7857385a545507b8d468227ad709d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef8f4905db1773830ec5a8d291ff4f37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#aef8f4905db1773830ec5a8d291ff4f37">num_negative</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:aef8f4905db1773830ec5a8d291ff4f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86b191c94e7258e5411f5e5321289a2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a86b191c94e7258e5411f5e5321289a2b">num_conjugate</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
-<tr class="separator:a86b191c94e7258e5411f5e5321289a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ce3ffa177d5cda652fa84f5e8f9f48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a45ce3ffa177d5cda652fa84f5e8f9f48">num_real</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a45ce3ffa177d5cda652fa84f5e8f9f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1284a5cc79f69e73453e5f069701ca9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a1284a5cc79f69e73453e5f069701ca9b">num_imag</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a1284a5cc79f69e73453e5f069701ca9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9ecbcebc52f5a67fe05e8b6a33a470e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#ac9ecbcebc52f5a67fe05e8b6a33a470e">num_is_zero</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
+<tr class="separator:ac9ecbcebc52f5a67fe05e8b6a33a470e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e235c02ad75b2fa291b1e7215f0f0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a03e235c02ad75b2fa291b1e7215f0f0d">num_is_real</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
+<tr class="separator:a03e235c02ad75b2fa291b1e7215f0f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0a0ab7c706eef8722f6f6f777afb2f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#abe0a0ab7c706eef8722f6f6f777afb2f">num_to_d</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
+<tr class="separator:abe0a0ab7c706eef8722f6f6f777afb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1442e3726e587c6a9b83ee916cdce08"><td class="memItemLeft" align="right" valign="top"><a id="ae1442e3726e587c6a9b83ee916cdce08"></a>
+double complex&#160;</td><td class="memItemRight" valign="bottom"><b>num_to_complex</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:ae1442e3726e587c6a9b83ee916cdce08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f6ab75d5b918396659d9494e792454"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#ad9f6ab75d5b918396659d9494e792454">num_abs</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:ad9f6ab75d5b918396659d9494e792454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8472fa5f026c3bbf9dadf5e9c45c360"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#af8472fa5f026c3bbf9dadf5e9c45c360">num_neg</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:af8472fa5f026c3bbf9dadf5e9c45c360"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f3023341fb767fec8f28e82d53a452"><td class="memItemLeft" align="right" valign="top"><a id="a06f3023341fb767fec8f28e82d53a452"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_inv</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a06f3023341fb767fec8f28e82d53a452"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dd39833985df5c91905bbcfb277e418"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a7dd39833985df5c91905bbcfb277e418">num_conj</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a7dd39833985df5c91905bbcfb277e418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f67e0136d8194b9d9ce07ebf3522f3"><td class="memItemLeft" align="right" valign="top"><a id="af0f67e0136d8194b9d9ce07ebf3522f3"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_ceil</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:af0f67e0136d8194b9d9ce07ebf3522f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8882f2036261cfc7046c375bd820c62b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a8882f2036261cfc7046c375bd820c62b">num_arg</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
 <tr class="separator:a8882f2036261cfc7046c375bd820c62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bc24760b850849b6e95057a4b8b52eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a4bc24760b850849b6e95057a4b8b52eb">num_sqrt</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self)</td></tr>
@@ -161,20 +176,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>num_to_pair</b> (doub
 <tr class="separator:ac411f0a1d6d3a88706e9c7a253b21d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c0e48fa791fde480289c2e4fe068052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a4c0e48fa791fde480289c2e4fe068052">num_pow</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
 <tr class="separator:a4c0e48fa791fde480289c2e4fe068052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a564ddaa7c9e40fd4f7de661c6a03f735"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#a564ddaa7c9e40fd4f7de661c6a03f735">num_eq</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
-<tr class="separator:a564ddaa7c9e40fd4f7de661c6a03f735"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a447b8eedef3097c48d7e75660d628e49"><td class="memItemLeft" align="right" valign="top"><a id="a447b8eedef3097c48d7e75660d628e49"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>num_gt</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
-<tr class="separator:a447b8eedef3097c48d7e75660d628e49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a090e52e2e8556a6291f8ac539486c11b"><td class="memItemLeft" align="right" valign="top"><a id="a090e52e2e8556a6291f8ac539486c11b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>num_lt</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
-<tr class="separator:a090e52e2e8556a6291f8ac539486c11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04419786a2d0aa7d16e7be9fae177dbb"><td class="memItemLeft" align="right" valign="top"><a id="a04419786a2d0aa7d16e7be9fae177dbb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>num_ge</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
-<tr class="separator:a04419786a2d0aa7d16e7be9fae177dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32cffe5bd8a81a511bc23b85852d78e7"><td class="memItemLeft" align="right" valign="top"><a id="a32cffe5bd8a81a511bc23b85852d78e7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>num_le</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
-<tr class="separator:a32cffe5bd8a81a511bc23b85852d78e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb58bb1f7547779d9a71ea0be32c4f23"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="num_8h.html#afb58bb1f7547779d9a71ea0be32c4f23">num_eq</a> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
+<tr class="separator:afb58bb1f7547779d9a71ea0be32c4f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54270668d356abc2a6420b91aabc7ec6"><td class="memItemLeft" align="right" valign="top"><a id="a54270668d356abc2a6420b91aabc7ec6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>num_gt</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
+<tr class="separator:a54270668d356abc2a6420b91aabc7ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16138dd08b9cd6fb4afa184afe9a14c3"><td class="memItemLeft" align="right" valign="top"><a id="a16138dd08b9cd6fb4afa184afe9a14c3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>num_lt</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
+<tr class="separator:a16138dd08b9cd6fb4afa184afe9a14c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab7bb5405c85bcfa59b962bd3b53d63"><td class="memItemLeft" align="right" valign="top"><a id="a9ab7bb5405c85bcfa59b962bd3b53d63"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>num_ge</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
+<tr class="separator:a9ab7bb5405c85bcfa59b962bd3b53d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af94bd41391520165b29f4ef6c25d63"><td class="memItemLeft" align="right" valign="top"><a id="a9af94bd41391520165b29f4ef6c25d63"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>num_le</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other)</td></tr>
+<tr class="separator:a9af94bd41391520165b29f4ef6c25d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab43f6ca6a93bd27dff7d3b803823ab71"><td class="memItemLeft" align="right" valign="top"><a id="ab43f6ca6a93bd27dff7d3b803823ab71"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_erf</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:ab43f6ca6a93bd27dff7d3b803823ab71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2947a57aae1fdee20dca9af0d96ef0"><td class="memItemLeft" align="right" valign="top"><a id="a1e2947a57aae1fdee20dca9af0d96ef0"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_erfc</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a1e2947a57aae1fdee20dca9af0d96ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9a6f7f6d4820f0ecbe752809fcceb0"><td class="memItemLeft" align="right" valign="top"><a id="a2c9a6f7f6d4820f0ecbe752809fcceb0"></a>
+<a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>num_rgamma</b> (const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> self)</td></tr>
+<tr class="separator:a2c9a6f7f6d4820f0ecbe752809fcceb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -202,8 +226,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af0d7857385a545507b8d468227ad709d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0d7857385a545507b8d468227ad709d">&#9670;&nbsp;</a></span>num_abs()</h2>
+<a id="ad9f6ab75d5b918396659d9494e792454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f6ab75d5b918396659d9494e792454">&#9670;&nbsp;</a></span>num_abs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,31 +236,12 @@ Variables</h2></td></tr>
           <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_abs </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Returns the absolute value of <code>_self</code> ( \(x\)), \(|x|\). </p>
-
-</div>
-</div>
-<a id="a4d1afb104c96048a84ce3374d3e6da24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d1afb104c96048a84ce3374d3e6da24">&#9670;&nbsp;</a></span>num_abs2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_abs2 </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Returns the square of absolute value of <code>_self</code> ( \(x\)), \(|x|\). </p>
 
 </div>
 </div>
@@ -288,17 +293,17 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a86b191c94e7258e5411f5e5321289a2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86b191c94e7258e5411f5e5321289a2b">&#9670;&nbsp;</a></span>num_conjugate()</h2>
+<a id="a7dd39833985df5c91905bbcfb277e418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dd39833985df5c91905bbcfb277e418">&#9670;&nbsp;</a></span>num_conj()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_conjugate </td>
+          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_conj </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -355,14 +360,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a564ddaa7c9e40fd4f7de661c6a03f735"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a564ddaa7c9e40fd4f7de661c6a03f735">&#9670;&nbsp;</a></span>num_eq()</h2>
+<a id="afb58bb1f7547779d9a71ea0be32c4f23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb58bb1f7547779d9a71ea0be32c4f23">&#9670;&nbsp;</a></span>num_eq()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int num_eq </td>
+          <td class="memname">bool num_eq </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
           <td class="paramname"><em>_self</em>, </td>
@@ -432,17 +437,17 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac968eff949f2d42b4acad1a3871bc1d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac968eff949f2d42b4acad1a3871bc1d0">&#9670;&nbsp;</a></span>num_imag_part()</h2>
+<a id="a1284a5cc79f69e73453e5f069701ca9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1284a5cc79f69e73453e5f069701ca9b">&#9670;&nbsp;</a></span>num_imag()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_imag_part </td>
+          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_imag </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -451,14 +456,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9e2151569e9e108fcd16a7dc1e937ded"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e2151569e9e108fcd16a7dc1e937ded">&#9670;&nbsp;</a></span>num_is_real()</h2>
+<a id="a03e235c02ad75b2fa291b1e7215f0f0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e235c02ad75b2fa291b1e7215f0f0d">&#9670;&nbsp;</a></span>num_is_real()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int num_is_real </td>
+          <td class="memname">bool num_is_real </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
           <td class="paramname"><em>_self</em></td><td>)</td>
@@ -470,14 +475,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1c1a2db3dc82a3bb5f422897cc05e93c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c1a2db3dc82a3bb5f422897cc05e93c">&#9670;&nbsp;</a></span>num_is_zero()</h2>
+<a id="ac9ecbcebc52f5a67fe05e8b6a33a470e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9ecbcebc52f5a67fe05e8b6a33a470e">&#9670;&nbsp;</a></span>num_is_zero()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int num_is_zero </td>
+          <td class="memname">bool num_is_zero </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
           <td class="paramname"><em>_self</em></td><td>)</td>
@@ -537,17 +542,17 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aef8f4905db1773830ec5a8d291ff4f37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef8f4905db1773830ec5a8d291ff4f37">&#9670;&nbsp;</a></span>num_negative()</h2>
+<a id="af8472fa5f026c3bbf9dadf5e9c45c360"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8472fa5f026c3bbf9dadf5e9c45c360">&#9670;&nbsp;</a></span>num_neg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_negative </td>
+          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_neg </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -585,17 +590,17 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7f8724d10b598f4f8d29ada9010bb334"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f8724d10b598f4f8d29ada9010bb334">&#9670;&nbsp;</a></span>num_real_part()</h2>
+<a id="a45ce3ffa177d5cda652fa84f5e8f9f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ce3ffa177d5cda652fa84f5e8f9f48">&#9670;&nbsp;</a></span>num_real()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_real_part </td>
+          <td class="memname"><a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> num_real </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
-          <td class="paramname"><em>_self</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -671,14 +676,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ada2d09e8a1a94a020bbd076d3aaca9ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada2d09e8a1a94a020bbd076d3aaca9ea">&#9670;&nbsp;</a></span>num_to_double()</h2>
+<a id="abe0a0ab7c706eef8722f6f6f777afb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0a0ab7c706eef8722f6f6f777afb2f">&#9670;&nbsp;</a></span>num_to_d()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double num_to_double </td>
+          <td class="memname">double num_to_d </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>&#160;</td>
           <td class="paramname"><em>_self</em></td><td>)</td>

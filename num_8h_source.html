@@ -97,166 +97,197 @@ $(document).ready(function(){initNavTree('num_8h_source.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <a href="num_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * This file is part of c-adt-numeric (https://github.com/padawanphysicist/c-adt-numeric).</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * This file is part of num.c (https://github.com/padawanphysicist/num.c).</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * c-adt-numeric is free software: you can redistribute it and/or modify it</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * num.c is free software: you can redistribute it and/or modify it</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * under the terms of the GNU General Public License as published by the Free</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Software Foundation, either version 3 of the License, or (at your option) any</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * later version.</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * c-adt-numeric is distributed in the hope that it will be useful, but WITHOUT</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * num.c is distributed in the hope that it will be useful, but WITHOUT</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * details.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License along with</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * c-adt-numeric. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * num.c. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef __NUM_H__</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define __NUM_H__</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">void</span>* <a class="code" href="num_8h.html#ae7ef45dc2f88325913184030e4b47db7">num</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span>* <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;num_zero (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;complex.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">void</span> * <a class="code" href="num_8h.html#ae7ef45dc2f88325913184030e4b47db7">num</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">   40</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">void</span> * <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">/***************************************/</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">/* Accessors: Real and Imaginary parts */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/***************************************/</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="num_8h.html#a7f8724d10b598f4f8d29ada9010bb334">num_real_part</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="num_8h.html#ac968eff949f2d42b4acad1a3871bc1d0">num_imag_part</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;num_print (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>, <span class="keyword">const</span> <span class="keywordtype">bool</span> endline);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;num_from_d (<span class="keyword">const</span> <span class="keywordtype">double</span> x);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;num_from_d_d (<span class="keyword">const</span> <span class="keywordtype">double</span> re, <span class="keyword">const</span> <span class="keywordtype">double</span> im);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;num_zero (<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/***************************************/</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* Accessors: Real and Imaginary parts */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">/***************************************/</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/**************/</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">/* Predicates */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/**************/</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<a class="code" href="num_8h.html#a1c1a2db3dc82a3bb5f422897cc05e93c">num_is_zero</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="num_8h.html#a9e2151569e9e108fcd16a7dc1e937ded">num_is_real</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<a class="code" href="num_8h.html#a45ce3ffa177d5cda652fa84f5e8f9f48">num_real</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="num_8h.html#a1284a5cc79f69e73453e5f069701ca9b">num_imag</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/**************/</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/* Predicates */</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">/**************/</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">/****************/</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/* Type casting */</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">/****************/</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">double</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<a class="code" href="num_8h.html#ada2d09e8a1a94a020bbd076d3aaca9ea">num_to_double</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;num_to_pair (<span class="keywordtype">double</span>* res, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">/********************/</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/* Unary operations */</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">/********************/</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<a class="code" href="num_8h.html#a4d1afb104c96048a84ce3374d3e6da24">num_abs2</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<a class="code" href="num_8h.html#af0d7857385a545507b8d468227ad709d">num_abs</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<a class="code" href="num_8h.html#aef8f4905db1773830ec5a8d291ff4f37">num_negative</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="num_8h.html#a86b191c94e7258e5411f5e5321289a2b">num_conjugate</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<a class="code" href="num_8h.html#ac9ecbcebc52f5a67fe05e8b6a33a470e">num_is_zero</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<a class="code" href="num_8h.html#a03e235c02ad75b2fa291b1e7215f0f0d">num_is_real</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">/****************/</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">/* Type casting */</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/****************/</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="keywordtype">double</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<a class="code" href="num_8h.html#abe0a0ab7c706eef8722f6f6f777afb2f">num_to_d</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">/* void */</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">/* num_to_pair (double* res, const num_t _self); */</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keywordtype">double</span> complex</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;num_to_complex (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">/********************/</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">/* Unary operations */</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">/********************/</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<a class="code" href="num_8h.html#ad9f6ab75d5b918396659d9494e792454">num_abs</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<a class="code" href="num_8h.html#af8472fa5f026c3bbf9dadf5e9c45c360">num_neg</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<a class="code" href="num_8h.html#a8882f2036261cfc7046c375bd820c62b">num_arg</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;num_inv (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<a class="code" href="num_8h.html#a4bc24760b850849b6e95057a4b8b52eb">num_sqrt</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<a class="code" href="num_8h.html#a7dd39833985df5c91905bbcfb277e418">num_conj</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<a class="code" href="num_8h.html#a40fcb28572f32a017f49638dd0d1de57">num_exp</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<a class="code" href="num_8h.html#a5cc3347dc75efca82a85f5908aa5a12f">num_log</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<a class="code" href="num_8h.html#a45053051eb7eac0b946d14f96234c810">num_sin</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<a class="code" href="num_8h.html#aff8ad342c27ff941241554d4c4978442">num_cos</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">/*********************/</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">/* Binary operations */</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">/*********************/</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">/**************/</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">/* Arithmetic */</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">/**************/</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="num_8h.html#a4c48c6301729e84b2c26499b62387de3">num_add</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<a class="code" href="num_8h.html#ac60f75a6e042c0b30c11bbc230668672">num_sub</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<a class="code" href="num_8h.html#a6473ee0d09418ce73b47b19252f511f0">num_mul</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<a class="code" href="num_8h.html#a2125a3616a28976932351541bc143e87">num_div</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<a class="code" href="num_8h.html#ac411f0a1d6d3a88706e9c7a253b21d22">num_fmod</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<a class="code" href="num_8h.html#a4c0e48fa791fde480289c2e4fe068052">num_pow</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">/***********/</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">/* Logical */</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">/***********/</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<a class="code" href="num_8h.html#a564ddaa7c9e40fd4f7de661c6a03f735">num_eq</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;num_gt (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;num_lt (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;num_ge (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keywordtype">int</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;num_le (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __NUM_H__ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="anum_8h_html_a1c1a2db3dc82a3bb5f422897cc05e93c"><div class="ttname"><a href="num_8h.html#a1c1a2db3dc82a3bb5f422897cc05e93c">num_is_zero</a></div><div class="ttdeci">int num_is_zero(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:107</div></div>
-<div class="ttc" id="anum_8h_html_a2125a3616a28976932351541bc143e87"><div class="ttname"><a href="num_8h.html#a2125a3616a28976932351541bc143e87">num_div</a></div><div class="ttdeci">num_t num_div(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:285</div></div>
-<div class="ttc" id="anum_8h_html_a40fcb28572f32a017f49638dd0d1de57"><div class="ttname"><a href="num_8h.html#a40fcb28572f32a017f49638dd0d1de57">num_exp</a></div><div class="ttdeci">num_t num_exp(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:205</div></div>
-<div class="ttc" id="anum_8h_html_a45053051eb7eac0b946d14f96234c810"><div class="ttname"><a href="num_8h.html#a45053051eb7eac0b946d14f96234c810">num_sin</a></div><div class="ttdeci">num_t num_sin(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:228</div></div>
-<div class="ttc" id="anum_8h_html_a4bc24760b850849b6e95057a4b8b52eb"><div class="ttname"><a href="num_8h.html#a4bc24760b850849b6e95057a4b8b52eb">num_sqrt</a></div><div class="ttdeci">num_t num_sqrt(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:196</div></div>
-<div class="ttc" id="anum_8h_html_a4c0e48fa791fde480289c2e4fe068052"><div class="ttname"><a href="num_8h.html#a4c0e48fa791fde480289c2e4fe068052">num_pow</a></div><div class="ttdeci">num_t num_pow(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:308</div></div>
-<div class="ttc" id="anum_8h_html_a4c48c6301729e84b2c26499b62387de3"><div class="ttname"><a href="num_8h.html#a4c48c6301729e84b2c26499b62387de3">num_add</a></div><div class="ttdeci">num_t num_add(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:253</div></div>
-<div class="ttc" id="anum_8h_html_a4d1afb104c96048a84ce3374d3e6da24"><div class="ttname"><a href="num_8h.html#a4d1afb104c96048a84ce3374d3e6da24">num_abs2</a></div><div class="ttdeci">num_t num_abs2(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:150</div></div>
-<div class="ttc" id="anum_8h_html_a564ddaa7c9e40fd4f7de661c6a03f735"><div class="ttname"><a href="num_8h.html#a564ddaa7c9e40fd4f7de661c6a03f735">num_eq</a></div><div class="ttdeci">int num_eq(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:326</div></div>
-<div class="ttc" id="anum_8h_html_a5cc3347dc75efca82a85f5908aa5a12f"><div class="ttname"><a href="num_8h.html#a5cc3347dc75efca82a85f5908aa5a12f">num_log</a></div><div class="ttdeci">num_t num_log(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:215</div></div>
-<div class="ttc" id="anum_8h_html_a6473ee0d09418ce73b47b19252f511f0"><div class="ttname"><a href="num_8h.html#a6473ee0d09418ce73b47b19252f511f0">num_mul</a></div><div class="ttdeci">num_t num_mul(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:271</div></div>
-<div class="ttc" id="anum_8h_html_a7f8724d10b598f4f8d29ada9010bb334"><div class="ttname"><a href="num_8h.html#a7f8724d10b598f4f8d29ada9010bb334">num_real_part</a></div><div class="ttdeci">num_t num_real_part(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:90</div></div>
-<div class="ttc" id="anum_8h_html_a86b191c94e7258e5411f5e5321289a2b"><div class="ttname"><a href="num_8h.html#a86b191c94e7258e5411f5e5321289a2b">num_conjugate</a></div><div class="ttdeci">num_t num_conjugate(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:178</div></div>
-<div class="ttc" id="anum_8h_html_a8882f2036261cfc7046c375bd820c62b"><div class="ttname"><a href="num_8h.html#a8882f2036261cfc7046c375bd820c62b">num_arg</a></div><div class="ttdeci">num_t num_arg(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:186</div></div>
-<div class="ttc" id="anum_8h_html_a9e2151569e9e108fcd16a7dc1e937ded"><div class="ttname"><a href="num_8h.html#a9e2151569e9e108fcd16a7dc1e937ded">num_is_real</a></div><div class="ttdeci">int num_is_real(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:115</div></div>
-<div class="ttc" id="anum_8h_html_aa73d55620061f5869c47123c792e52c5"><div class="ttname"><a href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div><div class="ttdeci">void * num_t</div><div class="ttdef"><b>Definition:</b> num.h:37</div></div>
-<div class="ttc" id="anum_8h_html_ac411f0a1d6d3a88706e9c7a253b21d22"><div class="ttname"><a href="num_8h.html#ac411f0a1d6d3a88706e9c7a253b21d22">num_fmod</a></div><div class="ttdeci">num_t num_fmod(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:301</div></div>
-<div class="ttc" id="anum_8h_html_ac60f75a6e042c0b30c11bbc230668672"><div class="ttname"><a href="num_8h.html#ac60f75a6e042c0b30c11bbc230668672">num_sub</a></div><div class="ttdeci">num_t num_sub(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:262</div></div>
-<div class="ttc" id="anum_8h_html_ac968eff949f2d42b4acad1a3871bc1d0"><div class="ttname"><a href="num_8h.html#ac968eff949f2d42b4acad1a3871bc1d0">num_imag_part</a></div><div class="ttdeci">num_t num_imag_part(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:98</div></div>
-<div class="ttc" id="anum_8h_html_ada2d09e8a1a94a020bbd076d3aaca9ea"><div class="ttname"><a href="num_8h.html#ada2d09e8a1a94a020bbd076d3aaca9ea">num_to_double</a></div><div class="ttdeci">double num_to_double(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:127</div></div>
-<div class="ttc" id="anum_8h_html_ae7ef45dc2f88325913184030e4b47db7"><div class="ttname"><a href="num_8h.html#ae7ef45dc2f88325913184030e4b47db7">num</a></div><div class="ttdeci">const void * num</div><div class="ttdef"><b>Definition:</b> num.c:82</div></div>
-<div class="ttc" id="anum_8h_html_aef8f4905db1773830ec5a8d291ff4f37"><div class="ttname"><a href="num_8h.html#aef8f4905db1773830ec5a8d291ff4f37">num_negative</a></div><div class="ttdeci">num_t num_negative(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:170</div></div>
-<div class="ttc" id="anum_8h_html_af0d7857385a545507b8d468227ad709d"><div class="ttname"><a href="num_8h.html#af0d7857385a545507b8d468227ad709d">num_abs</a></div><div class="ttdeci">num_t num_abs(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:160</div></div>
-<div class="ttc" id="anum_8h_html_aff8ad342c27ff941241554d4c4978442"><div class="ttname"><a href="num_8h.html#aff8ad342c27ff941241554d4c4978442">num_cos</a></div><div class="ttdeci">num_t num_cos(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:239</div></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;num_ceil (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="num_8h.html#a8882f2036261cfc7046c375bd820c62b">num_arg</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<a class="code" href="num_8h.html#a4bc24760b850849b6e95057a4b8b52eb">num_sqrt</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<a class="code" href="num_8h.html#a40fcb28572f32a017f49638dd0d1de57">num_exp</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<a class="code" href="num_8h.html#a5cc3347dc75efca82a85f5908aa5a12f">num_log</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<a class="code" href="num_8h.html#a45053051eb7eac0b946d14f96234c810">num_sin</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<a class="code" href="num_8h.html#aff8ad342c27ff941241554d4c4978442">num_cos</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment">/*********************/</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">/* Binary operations */</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">/*********************/</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">/**************/</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">/* Arithmetic */</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">/**************/</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<a class="code" href="num_8h.html#a4c48c6301729e84b2c26499b62387de3">num_add</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<a class="code" href="num_8h.html#ac60f75a6e042c0b30c11bbc230668672">num_sub</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<a class="code" href="num_8h.html#a6473ee0d09418ce73b47b19252f511f0">num_mul</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<a class="code" href="num_8h.html#a2125a3616a28976932351541bc143e87">num_div</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<a class="code" href="num_8h.html#ac411f0a1d6d3a88706e9c7a253b21d22">num_fmod</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<a class="code" href="num_8h.html#a4c0e48fa791fde480289c2e4fe068052">num_pow</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">/***********/</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">/* Logical */</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">/***********/</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<a class="code" href="num_8h.html#afb58bb1f7547779d9a71ea0be32c4f23">num_eq</a> (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;num_gt (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;num_lt (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;num_ge (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;num_le (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _self, <span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> _other);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">/*********************/</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">/* Special functions */</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">/*********************/</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;num_erf (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;num_erfc (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;num_rgamma (<span class="keyword">const</span> <a class="code" href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a> <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __NUM_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anum_8h_html_a03e235c02ad75b2fa291b1e7215f0f0d"><div class="ttname"><a href="num_8h.html#a03e235c02ad75b2fa291b1e7215f0f0d">num_is_real</a></div><div class="ttdeci">bool num_is_real(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:190</div></div>
+<div class="ttc" id="anum_8h_html_a1284a5cc79f69e73453e5f069701ca9b"><div class="ttname"><a href="num_8h.html#a1284a5cc79f69e73453e5f069701ca9b">num_imag</a></div><div class="ttdeci">num_t num_imag(const num_t self)</div><div class="ttdef"><b>Definition:</b> num.c:164</div></div>
+<div class="ttc" id="anum_8h_html_a2125a3616a28976932351541bc143e87"><div class="ttname"><a href="num_8h.html#a2125a3616a28976932351541bc143e87">num_div</a></div><div class="ttdeci">num_t num_div(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:484</div></div>
+<div class="ttc" id="anum_8h_html_a40fcb28572f32a017f49638dd0d1de57"><div class="ttname"><a href="num_8h.html#a40fcb28572f32a017f49638dd0d1de57">num_exp</a></div><div class="ttdeci">num_t num_exp(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:327</div></div>
+<div class="ttc" id="anum_8h_html_a45053051eb7eac0b946d14f96234c810"><div class="ttname"><a href="num_8h.html#a45053051eb7eac0b946d14f96234c810">num_sin</a></div><div class="ttdeci">num_t num_sin(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:367</div></div>
+<div class="ttc" id="anum_8h_html_a45ce3ffa177d5cda652fa84f5e8f9f48"><div class="ttname"><a href="num_8h.html#a45ce3ffa177d5cda652fa84f5e8f9f48">num_real</a></div><div class="ttdeci">num_t num_real(const num_t self)</div><div class="ttdef"><b>Definition:</b> num.c:149</div></div>
+<div class="ttc" id="anum_8h_html_a4bc24760b850849b6e95057a4b8b52eb"><div class="ttname"><a href="num_8h.html#a4bc24760b850849b6e95057a4b8b52eb">num_sqrt</a></div><div class="ttdeci">num_t num_sqrt(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:307</div></div>
+<div class="ttc" id="anum_8h_html_a4c0e48fa791fde480289c2e4fe068052"><div class="ttname"><a href="num_8h.html#a4c0e48fa791fde480289c2e4fe068052">num_pow</a></div><div class="ttdeci">num_t num_pow(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:518</div></div>
+<div class="ttc" id="anum_8h_html_a4c48c6301729e84b2c26499b62387de3"><div class="ttname"><a href="num_8h.html#a4c48c6301729e84b2c26499b62387de3">num_add</a></div><div class="ttdeci">num_t num_add(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:415</div></div>
+<div class="ttc" id="anum_8h_html_a5cc3347dc75efca82a85f5908aa5a12f"><div class="ttname"><a href="num_8h.html#a5cc3347dc75efca82a85f5908aa5a12f">num_log</a></div><div class="ttdeci">num_t num_log(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:347</div></div>
+<div class="ttc" id="anum_8h_html_a6473ee0d09418ce73b47b19252f511f0"><div class="ttname"><a href="num_8h.html#a6473ee0d09418ce73b47b19252f511f0">num_mul</a></div><div class="ttdeci">num_t num_mul(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:461</div></div>
+<div class="ttc" id="anum_8h_html_a7dd39833985df5c91905bbcfb277e418"><div class="ttname"><a href="num_8h.html#a7dd39833985df5c91905bbcfb277e418">num_conj</a></div><div class="ttdeci">num_t num_conj(const num_t self)</div><div class="ttdef"><b>Definition:</b> num.c:271</div></div>
+<div class="ttc" id="anum_8h_html_a8882f2036261cfc7046c375bd820c62b"><div class="ttname"><a href="num_8h.html#a8882f2036261cfc7046c375bd820c62b">num_arg</a></div><div class="ttdeci">num_t num_arg(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:293</div></div>
+<div class="ttc" id="anum_8h_html_aa73d55620061f5869c47123c792e52c5"><div class="ttname"><a href="num_8h.html#aa73d55620061f5869c47123c792e52c5">num_t</a></div><div class="ttdeci">void * num_t</div><div class="ttdef"><b>Definition:</b> num.h:40</div></div>
+<div class="ttc" id="anum_8h_html_abe0a0ab7c706eef8722f6f6f777afb2f"><div class="ttname"><a href="num_8h.html#abe0a0ab7c706eef8722f6f6f777afb2f">num_to_d</a></div><div class="ttdeci">double num_to_d(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:202</div></div>
+<div class="ttc" id="anum_8h_html_ac411f0a1d6d3a88706e9c7a253b21d22"><div class="ttname"><a href="num_8h.html#ac411f0a1d6d3a88706e9c7a253b21d22">num_fmod</a></div><div class="ttdeci">num_t num_fmod(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:507</div></div>
+<div class="ttc" id="anum_8h_html_ac60f75a6e042c0b30c11bbc230668672"><div class="ttname"><a href="num_8h.html#ac60f75a6e042c0b30c11bbc230668672">num_sub</a></div><div class="ttdeci">num_t num_sub(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:438</div></div>
+<div class="ttc" id="anum_8h_html_ac9ecbcebc52f5a67fe05e8b6a33a470e"><div class="ttname"><a href="num_8h.html#ac9ecbcebc52f5a67fe05e8b6a33a470e">num_is_zero</a></div><div class="ttdeci">bool num_is_zero(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:180</div></div>
+<div class="ttc" id="anum_8h_html_ad9f6ab75d5b918396659d9494e792454"><div class="ttname"><a href="num_8h.html#ad9f6ab75d5b918396659d9494e792454">num_abs</a></div><div class="ttdeci">num_t num_abs(const num_t self)</div><div class="ttdef"><b>Definition:</b> num.c:235</div></div>
+<div class="ttc" id="anum_8h_html_ae7ef45dc2f88325913184030e4b47db7"><div class="ttname"><a href="num_8h.html#ae7ef45dc2f88325913184030e4b47db7">num</a></div><div class="ttdeci">const void * num</div><div class="ttdef"><b>Definition:</b> num.c:88</div></div>
+<div class="ttc" id="anum_8h_html_af8472fa5f026c3bbf9dadf5e9c45c360"><div class="ttname"><a href="num_8h.html#af8472fa5f026c3bbf9dadf5e9c45c360">num_neg</a></div><div class="ttdeci">num_t num_neg(const num_t self)</div><div class="ttdef"><b>Definition:</b> num.c:247</div></div>
+<div class="ttc" id="anum_8h_html_afb58bb1f7547779d9a71ea0be32c4f23"><div class="ttname"><a href="num_8h.html#afb58bb1f7547779d9a71ea0be32c4f23">num_eq</a></div><div class="ttdeci">bool num_eq(const num_t _self, const num_t _other)</div><div class="ttdef"><b>Definition:</b> num.c:543</div></div>
+<div class="ttc" id="anum_8h_html_aff8ad342c27ff941241554d4c4978442"><div class="ttname"><a href="num_8h.html#aff8ad342c27ff941241554d4c4978442">num_cos</a></div><div class="ttdeci">num_t num_cos(const num_t _self)</div><div class="ttdef"><b>Definition:</b> num.c:389</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

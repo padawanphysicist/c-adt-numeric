@@ -97,20 +97,20 @@ $(document).ready(function(){initNavTree('abc_8h_source.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 <a href="abc_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * This file is part of c-adt-numeric (https://github.com/padawanphysicist/c-adt-numeric).</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * This file is part of num.c (https://github.com/padawanphysicist/num.c).</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * c-adt-numeric is free software: you can redistribute it and/or modify it</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * num.c is free software: you can redistribute it and/or modify it</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * under the terms of the GNU General Public License as published by the Free</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Software Foundation, either version 3 of the License, or (at your option) any</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * later version.</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * c-adt-numeric is distributed in the hope that it will be useful, but WITHOUT</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * num.c is distributed in the hope that it will be useful, but WITHOUT</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * details.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * You should have received a copy of the GNU General Public License along with</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * c-adt-numeric. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * num.c. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef __ABC_H__</span></div>
@@ -122,9 +122,9 @@ $(document).ready(function(){initNavTree('abc_8h_source.html',''); initResizable
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structABC.html">   28</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structABC.html">ABC</a></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structABC.html#a317983e5d70c5e913842109dd0db6a8b">   34</a></span>&#160;    <span class="keywordtype">void</span>* (* ctor)  (<span class="keywordtype">void</span>* <span class="keyword">self</span>, va_list* app);</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structABC.html#a7ed77391d06b994a9934440aa0a3c953">   38</a></span>&#160;    <span class="keywordtype">void</span>* (* dtor)  (<span class="keywordtype">void</span>* <span class="keyword">self</span>); </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structABC.html#ac34d27cd2cdbf0271586766def568cc8">   42</a></span>&#160;    <span class="keywordtype">void</span>* (* clone) (<span class="keyword">const</span> <span class="keywordtype">void</span>* <span class="keyword">self</span>); </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structABC.html#a317983e5d70c5e913842109dd0db6a8b">   34</a></span>&#160;    <span class="keywordtype">void</span>* (* ctor) (<span class="keywordtype">void</span>* <span class="keyword">self</span>, va_list* app);</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structABC.html#a7ed77391d06b994a9934440aa0a3c953">   38</a></span>&#160;    <span class="keywordtype">void</span>* (* dtor) (<span class="keywordtype">void</span>* <span class="keyword">self</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">/* void* (* clone) (const void* self); */</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __ABC_H__ */</span><span class="preprocessor"></span></div>
