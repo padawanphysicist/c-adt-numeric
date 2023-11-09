@@ -1,11 +1,16 @@
 #include "unity.h"
 #include "num.h"
 #include "new.h"
+#include "log.h"
 
 #include <stdbool.h>
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323844
+#endif
+
+#ifndef LOG_LEVEL
+#define LOG_LEVEL 1
 #endif
 
 void
@@ -434,6 +439,8 @@ test_num_max (void)
 int
 main (void)
 {
+    log_set_level(LOG_LEVEL);
+
     UNITY_BEGIN();
 
     RUN_TEST(test_is_zero);

@@ -43,8 +43,10 @@ test: test.out
 test.out: $(OBJS)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
+# Defaults log level to TRACE
+LOG_LEVEL ?= 0
 %.o: %.c
-	$(CC) $(INCFLAGS) $(CFLAGS) -c $^ -o $@
+	$(CC) $(INCFLAGS) $(CFLAGS) -DLOG_LEVEL=$(LOG_LEVEL) -c $^ -o $@
 
 .PHONY: doc
 doc: Doxyfile
