@@ -4,11 +4,6 @@ CFLAGS:= -std=c99 \
 	-Wextra \
 	-pedantic
 
-# For logging
-LOGGING_CFLAGS = -DLOG_USE_COLOR
-LOGGING_SRCS=./modules/log.c/src/log.c
-LOGGING_INCDIR=./modules/log.c/src
-
 # For Unity
 UNITY_CFLAGS = -DUNITY_INCLUDE_DOUBLE
 UNITY_SRCS=./modules/Unity/src/unity.c
@@ -20,14 +15,14 @@ NUMERIC_SRCS=$(shell find ./src/ -type f -name '*.c')
 NUMERIC_INCDIR=./src/ ./include/
 NUMERIC_LDFLAGS = -lm -larb -lflint -ggdb3
 
-INCDIR = $(LOGGING_INCDIR) $(UNITY_INCDIR) $(NUMERIC_INCDIR) 
+INCDIR = $(UNITY_INCDIR) $(NUMERIC_INCDIR) 
 INCFLAGS=$(foreach d,$(INCDIR),-I$d)
-CFLAGS+=$(LOGGING_CFLAGS) $(UNITY_CFLAGS) $(NUMERIC_CFLAGS)
+CFLAGS+=$(UNITY_CFLAGS) $(NUMERIC_CFLAGS)
 LDFLAGS+=$(NUMERIC_LDFLAGS)
 
 all: test.out
 
-SRCS := $(LOGGING_SRCS) $(UNITY_SRCS) $(NUMERIC_SRCS) ./test/test.c
+SRCS := $(UNITY_SRCS) $(NUMERIC_SRCS) ./test/test.c
 OBJS := $(SRCS:%.c=%.o)
 
 .PHONY: test
