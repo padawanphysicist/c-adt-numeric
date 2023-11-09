@@ -734,19 +734,33 @@ num_cpy (num_t* self, const num_t other)
 num_t
 num_max (int count, ...)
 {
-    va_list ap;
-    num_t M = _arb_minus_infinity();
+    //va_list ap;
+    //num_t M = _arb_minus_infinity();
 
+    //va_start(ap, count); 
+    //for (int j = 0; j < count; j++)
+    //{
+    //    num_t n = va_arg(ap, num_t);
+    //    assert(num_is_real(n));
+    //    if (num_gt(n, M))
+    //        num_cpy(&M, n);
+    //    delete(n);
+    //}
+    //va_end(ap);
+
+    //return M;    
+    
+    va_list ap;
     va_start(ap, count); 
-    for (int j = 0; j < count; j++)
+
+    double M = num_to_d(va_arg(ap, num_t));
+    for (int j = 1; j < count; j++)
     {
-        num_t n = va_arg(ap, num_t);
-        assert(num_is_real(n));
-        if (num_gt(n, M))
-            num_cpy(&M, n);
-        delete(n);
+        const double n = num_to_d(va_arg(ap, num_t));
+	M = (n > M) ? n : M;
     }
     va_end(ap);
 
-    return M;    
+    return num_from_d(M);    
+
 }
