@@ -1,9 +1,6 @@
 [submodule "doxygen-awesome-css"]
 	path = modules/doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
-[submodule "logging"]
-	path = modules/log.c
-	url = https://github.com/rxi/log.c
 [submodule "unity"]
 	path = modules/Unity
 	url = https://github.com/ThrowTheSwitch/Unity

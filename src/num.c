@@ -29,7 +29,6 @@
 #include "abc.h"
 #include "new.h"
 #include "num.h"
-#include "log.h"
 
 #include <arb.h>
 #include <acb.h>
@@ -53,9 +52,7 @@ num_ctor (void * _self, va_list * app)
     const double im = va_arg(* app, const double);
     acb_set_d_d(self -> z, re, im);
 
-    log_trace("Allocate = %s, %p[%li]", __func__, self -> z, size_of(self));
-
-	return self;
+    return self;
 }
 
 static void *
@@ -63,9 +60,8 @@ num_dtor (void * self)
 {
     struct num * _self = self;
 
-    log_trace("Free = %s, %p[%li]", __func__, _self -> z, size_of(_self));
     acb_clear(_self -> z);
-	return self;
+    return self;
 }
 
 static const struct ABC _num = {
