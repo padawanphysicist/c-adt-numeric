@@ -35,17 +35,10 @@
 #include <acb.h>
 #include <acb_hypgeom.h>
 
-/* #ifndef _TOLERANCE */
-/* #define _TOLERANCE 1.0e-8 */
-/* #endif */
-
-//#define NCOMP 2
-
-
 #define PREC 53
 
 struct num {
-	const void * class; /* must be first */
+    const void * class; /* must be first */
     acb_t z;
 };
 
@@ -734,22 +727,6 @@ num_cpy (num_t* self, const num_t other)
 num_t
 num_max (int count, ...)
 {
-    //va_list ap;
-    //num_t M = _arb_minus_infinity();
-
-    //va_start(ap, count); 
-    //for (int j = 0; j < count; j++)
-    //{
-    //    num_t n = va_arg(ap, num_t);
-    //    assert(num_is_real(n));
-    //    if (num_gt(n, M))
-    //        num_cpy(&M, n);
-    //    delete(n);
-    //}
-    //va_end(ap);
-
-    //return M;    
-    
     va_list ap;
     va_start(ap, count); 
 
@@ -762,5 +739,4 @@ num_max (int count, ...)
     va_end(ap);
 
     return num_from_d(M);    
-
 }
