@@ -68,13 +68,6 @@ num_dtor (void * self)
 	return self;
 }
 
-/* static void* */
-/* num_clone (const void * self) */
-/* { */
-/*     const struct num * _self = self; */
-/* 	return new(num, 0.0, 0.0);//self->z); */
-/* } */
-
 static const struct ABC _num = {
 	sizeof(struct num),
 	num_ctor, num_dtor//,	num_clone
@@ -126,17 +119,6 @@ num_from_acb (const acb_t z)
     
     return num_from_d_d(re, im);
 }
-
-static num_t _arb_minus_infinity (void)
-{
-    arb_t x;
-    arb_init(x);
-    arb_neg_inf(x);
-    num_t res = num_from_arb(x);
-    arb_clear(x);
-    return res;
-}
-
 
 /* Input and Output */
 void
@@ -716,11 +698,8 @@ num_rgamma (const num_t self)
 void
 num_cpy (num_t* self, const num_t other)
 {
-    const struct num * _self = *self;
+    struct num * _self = *self;
     const struct num * _other = other;
-
-    acb_clear(_self -> z);
-    acb_init(_self -> z);
     acb_set(_self -> z, _other -> z);
 }
 

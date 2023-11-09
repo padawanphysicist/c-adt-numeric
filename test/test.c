@@ -4,6 +4,10 @@
 
 #include <stdbool.h>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323844
+#endif
+
 void
 setUp (void)
 {
@@ -22,7 +26,6 @@ test_is_zero (void)
     num_t z = num_from_d(0.0);
     const bool ret = num_is_zero(z);
     delete(z);
-    
     TEST_ASSERT_MESSAGE(ret, "zero isn't 0, end of the world!");
 }
 

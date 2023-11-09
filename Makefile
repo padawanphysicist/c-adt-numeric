@@ -15,7 +15,7 @@ UNITY_SRCS=./modules/Unity/src/unity.c
 UNITY_INCDIR=./modules/Unity/src/
 
 # For numeric
-NUMERIC_CFLAGS = -DM_PI=3.14159265358979323846
+NUMERIC_CFLAGS =
 NUMERIC_SRCS=$(shell find ./src/ -type f -name '*.c')
 NUMERIC_INCDIR=./src/ ./include/
 NUMERIC_LDFLAGS = -lm -larb -lflint -ggdb3
