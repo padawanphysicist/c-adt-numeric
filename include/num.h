@@ -195,6 +195,8 @@ num_cos (num_t res, const num_t self);
  */
 void
 num_add (num_t res, const num_t self, const num_t other);
+void
+num_add_d (num_t res, const num_t self, const double other);
 
 /**
  * returns the subtraction of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x - y\f$.
@@ -207,6 +209,8 @@ num_sub (num_t res, const num_t self, const num_t other);
  */
 void
 num_mul (num_t res, const num_t self, const num_t other);
+void
+num_mul_d (num_t res, const num_t self, const double other);
 
 /**
  * returns the division of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x/y\f$.
@@ -225,6 +229,8 @@ num_fmod (num_t res, const num_t self, const num_t other);
  */
 void
 num_pow (num_t res, const num_t self, const num_t other);
+void
+num_pow_d (num_t res, const num_t self, const double other);
 
 /***********/
 /* Logical */

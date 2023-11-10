@@ -333,6 +333,17 @@ num_add (num_t res, const num_t self, const num_t other)
 }
 
 void
+num_add_d (num_t res, const num_t self, const double other)
+{
+    num_t o;
+    o = new(num);
+    num_set_d(o, other);
+    num_add(res, self, o);
+    delete(o);
+}
+
+
+void
 num_sub (num_t res, const num_t self, const num_t other)
 {
     struct num * _res = res;
@@ -349,6 +360,16 @@ num_mul (num_t res, const num_t self, const num_t other)
     const struct num * _other = other;
     acb_mul(_res -> dat, _self -> dat, _other -> dat, PREC);    
 }
+void
+num_mul_d (num_t res, const num_t self, const double other)
+{
+    num_t o;
+    o = new(num);
+    num_set_d(o, other);
+    num_mul(res, self, o);
+    delete(o);
+}
+
 
 void
 num_div (num_t res, const num_t self, const num_t other)
@@ -378,6 +399,16 @@ num_pow (num_t res, const num_t self, const num_t other)
     const struct num * _other = other;
     acb_pow(_res -> dat, _self -> dat, _other -> dat, PREC);
 }
+void
+num_pow_d (num_t res, const num_t self, const double other)
+{
+    num_t o;
+    o = new(num);
+    num_set_d(o, other);
+    num_pow(res, self, o);
+    delete(o);
+}
+
 
 /* Logical */
 
