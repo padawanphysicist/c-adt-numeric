@@ -65,9 +65,6 @@ void
 num_set (num_t self, const num_t other);
 
 void
-num_set_acb (num_t self, const acb_t other);
-
-void
 num_set_d (num_t self, const double x);
 
 void
