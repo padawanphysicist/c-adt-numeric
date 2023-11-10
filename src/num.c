@@ -35,38 +35,35 @@
 #include <acb_hypgeom.h>
 
 #define PREC 53
+#define UNUSED(x) (void)(x)
 
-struct num {
+struct num
+{
     const void * class; /* must be first */
-    acb_t z;
+    acb_t dat;
 };
 
 static void *
-num_ctor (void * _self, va_list * app)
+num_ctor (void * self, va_list * app)
 {
-    struct num * self = _self;
-
-    acb_init(self -> z);
-	
-    const double re = va_arg(* app, const double);
-    const double im = va_arg(* app, const double);
-    acb_set_d_d(self -> z, re, im);
-
-    return self;
+    UNUSED(app);
+    struct num * _self = self;
+    acb_init(_self -> dat);
+    return _self;
 }
 
 static void *
 num_dtor (void * self)
 {
     struct num * _self = self;
-
-    acb_clear(_self -> z);
+    acb_clear(_self -> dat);
     return self;
 }
 
-static const struct ABC _num = {
+static const struct ABC _num =
+{
 	sizeof(struct num),
-	num_ctor, num_dtor//,	num_clone
+	num_ctor, num_dtor
 };
 
 const void * num = & _num;
@@ -83,37 +80,55 @@ arbtod (const arb_t x)
 /****************************/
 
 /* Basic manipulation */
-num_t
-num_from_d (const double x)
+
+void
+num_zero(num_t self)
 {
-    return new(num, x, 0.0);
+    struct num * _self = self;
+    acb_zero(_self -> dat);
 }
 
-num_t
-num_from_d_d (const double re, const double im)
+void
+num_one(num_t self)
 {
-    return new(num, re, im);
+    struct num * _self = self;
+    acb_one(_self -> dat);
 }
 
-num_t
-num_from_arb (const arb_t x)
+void
+num_onei(num_t self)
 {
-    return new(num, arbtod(x), 0.0);
+    struct num * _self = self;
+    acb_onei(_self -> dat);
 }
 
-num_t
-num_from_acb (const acb_t z)
+void
+num_set(num_t self, const num_t other)
 {
-    arb_t _re, _im;
+    struct num * _self = self;
+    const struct num * _other = other;
+    acb_set(_self -> dat, _other -> dat);
+}
 
-    arb_init(_re), arb_init(_im);
-    acb_get_real(_re, z);
-    acb_get_imag(_im, z);
-    const double re = arbtod(_re);
-    const double im = arbtod(_im);
-    arb_clear(_re), arb_clear(_im);
-    
-    return num_from_d_d(re, im);
+void
+num_set_d(num_t self, const double x)
+{
+    struct num * _self = self;
+    acb_set_d(_self -> dat, x);
+}
+
+void
+num_set_d_d(num_t self, const double x, const double y)
+{
+    struct num * _self = self;
+    acb_set_d_d(_self -> dat, x, y);
+}
+
+void
+num_set_acb (num_t self, const acb_t x)
+{
+    struct num * _self = self;
+    acb_set(_self -> dat, x);    
 }
 
 /* Input and Output */
@@ -124,39 +139,35 @@ num_print (const num_t self, const bool endline)
     const slong digits = 8;
     const ulong flags = 0;
 
-    acb_printn(_self -> z, digits, flags);
+    acb_printn(_self -> dat, digits, flags);
     if (endline) puts("\n");
 }
 
 /* Accessors: Real and Imaginary parts */
-num_t
-num_real (const num_t self)
+void
+num_real (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     
-    double re;
-    arb_t _re;
-    arb_init(_re);
-    acb_get_real(_re, _self -> z);
-    re = arbtod(_re);
-    arb_clear(_re);
-    
-	return num_from_d(re);
+    arb_t x;
+    arb_init(x);
+    acb_get_real(x, _self -> dat);
+    acb_set_arb(_res -> dat, x);
+    arb_clear(x);
 }
 
-num_t
-num_imag (const num_t self)
+void
+num_imag (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    double im;
-    arb_t _im;
-    arb_init(_im);
-    acb_get_imag(_im, _self -> z);
-    im = arbtod(_im);
-    arb_clear(_im);
     
-	return num_from_d(im);
+    arb_t x;
+    arb_init(x);
+    acb_get_imag(x, _self -> dat);
+    acb_set_arb(_res -> dat, x);
+    arb_clear(x);
 }
 
 /* Predicates */
@@ -165,7 +176,7 @@ num_is_zero (const num_t self)
 {
     const struct num * _self = self;
 
-    const int res = acb_is_zero(_self -> z);
+    const int res = acb_is_zero(_self -> dat);
 
     return (res != 0) ? true : false;
 }
@@ -175,7 +186,7 @@ num_is_real (const num_t self)
 {
     const struct num * _self = self;
 
-    const int res = acb_is_real(_self -> z);
+    const int res = acb_is_real(_self -> dat);
 
     return (res != 0) ? true : false;
 }
@@ -189,336 +200,183 @@ num_to_d (const num_t self)
 
     arb_t x;
     const struct num * _self = self;
+    double res;
 
     arb_init(x);
-    acb_get_real(x, _self -> z);
+    acb_get_real(x, _self -> dat);
 
-    return arbtod(x);
+    res = arbtod(x);
+    
+    return res;
 }
-
-/* void */
-/* num_to_pair (double* res, const num_t _self) */
-/* { */
-/*     const struct num* self = _self; */
-
-/*     for (int i = 0; i < NCOMP; i++) */
-/*         res[i] = self->dat[i]; */
-/* } */
 
 double complex
 num_to_complex (const num_t self)
 {
     const struct num * _self = self;
-    const double re = arbtod(acb_realref(_self -> z));
-    const double im = arbtod(acb_imagref(_self -> z));
+    const double re = arbtod(acb_realref(_self -> dat));
+    const double im = arbtod(acb_imagref(_self -> dat));
 
-    return re + im*I;
+    return re + im * I;
 }
 
-num_t
-num_abs (const num_t self)
+void
+num_abs (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
 
-    arb_t res;
-    arb_init(res);
-    acb_abs(res, _self -> z, PREC);
-
-    return num_from_arb(res);
+    arb_t x;
+    arb_init(x);
+    acb_abs(x, _self -> dat, PREC);
+    acb_set_arb(_res -> dat, x);
+    arb_clear(x);
 }
 
-num_t
-num_neg (const num_t self)
+void
+num_neg (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    acb_t res;
-    acb_init(res);
-    acb_neg(res, _self -> z);
-
-    return num_from_acb(res);
+    acb_neg(_res -> dat, _self -> dat);
 }
 
-num_t
-num_inv (const num_t self)
+void
+num_inv (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    acb_t res;
-    acb_init(res);
-    acb_inv(res, _self -> z, PREC);
-
-    return num_from_acb(res);
+    acb_inv(_res -> dat, _self -> dat, PREC);
 }
 
-num_t
-num_conj (const num_t self)
+void
+num_conj (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    acb_t res;
-    acb_init(res);
-    acb_conj(res, _self -> z);
-
-    return num_from_acb(res);
+    acb_conj(_res -> dat, _self -> dat);
 }
 
-num_t
-num_ceil (const num_t self)
+void
+num_ceil (num_t res, const num_t self)
 {
     assert(num_is_real(self));
-
+    struct num * _res = res;
     const double x = num_to_d(self);
-
-    return num_from_d(ceil(x));
+    acb_set_d(_res -> dat, ceil(x));
 }
 
-num_t
-num_arg (const num_t self)
+void
+num_arg (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
 
-    arb_t _arg_z;
-    arb_init(_arg_z);
-    acb_arg(_arg_z, _self -> z, PREC);
-    const double arg_z = arbtod(_arg_z);
-    arb_clear(_arg_z);
-
-    return num_from_d(arg_z);
+    arb_t x;
+    arb_init(x);
+    acb_arg(x, _self -> dat, PREC);
+    acb_set_arb(_res -> dat, x);
+    arb_clear(x);
 }
 
-num_t
-num_sqrt (const num_t self)
+void
+num_sqrt (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    arb_t _sqrt_z_re, _sqrt_z_im;
-    acb_t _sqrt_z;
-    acb_init(_sqrt_z);
-    arb_init(_sqrt_z_re); arb_init(_sqrt_z_im);
-    acb_sqrt(_sqrt_z, _self -> z, PREC);
-    acb_get_real(_sqrt_z_re, _sqrt_z);
-    acb_get_imag(_sqrt_z_im, _sqrt_z);
-    const double sqrt_z_re = arbtod(_sqrt_z_re);
-    const double sqrt_z_im = arbtod(_sqrt_z_im);
-    acb_clear(_sqrt_z);
-    arb_clear(_sqrt_z_re); arb_clear(_sqrt_z_im);
-
-    return num_from_d_d(sqrt_z_re, sqrt_z_im);
+    acb_sqrt(_res -> dat, _self -> dat, PREC);
 }
 
-num_t
-num_exp (const num_t self)
+void
+num_exp (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    arb_t _exp_z_re, _exp_z_im;
-    acb_t _exp_z;
-    acb_init(_exp_z);
-    arb_init(_exp_z_re); arb_init(_exp_z_im);
-    acb_exp(_exp_z, _self -> z, PREC);
-    acb_get_real(_exp_z_re, _exp_z);
-    acb_get_imag(_exp_z_im, _exp_z);
-    const double exp_z_re = arbtod(_exp_z_re);
-    const double exp_z_im = arbtod(_exp_z_im);
-    acb_clear(_exp_z);
-    arb_clear(_exp_z_re); arb_clear(_exp_z_im);
-
-    return num_from_d_d(exp_z_re, exp_z_im);
+    acb_exp(_res -> dat, _self -> dat, PREC);
 }
 
-num_t
-num_log (const num_t self)
+void
+num_log (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    arb_t _log_z_re, _log_z_im;
-    acb_t _log_z;
-    acb_init(_log_z);
-    arb_init(_log_z_re); arb_init(_log_z_im);
-    acb_log(_log_z, _self -> z, PREC);
-    acb_get_real(_log_z_re, _log_z);
-    acb_get_imag(_log_z_im, _log_z);
-    const double log_z_re = arbtod(_log_z_re);
-    const double log_z_im = arbtod(_log_z_im);
-    acb_clear(_log_z);
-    arb_clear(_log_z_re); arb_clear(_log_z_im);
-
-    return num_from_d_d(log_z_re, log_z_im);
+    acb_log(_res -> dat, _self -> dat, PREC);
 }
 
-num_t
-num_sin (const num_t self)
+void
+num_sin (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    double sin_z_re, sin_z_im;
-
-    arb_t _sin_z_re, _sin_z_im;
-    acb_t _sin_z;
-    acb_init(_sin_z);
-    arb_init(_sin_z_re); arb_init(_sin_z_im);
-    acb_sin(_sin_z, _self -> z, PREC);
-    acb_get_real(_sin_z_re, _sin_z);
-    acb_get_imag(_sin_z_im, _sin_z);
-    sin_z_re = arbtod(_sin_z_re);
-    sin_z_im = arbtod(_sin_z_im);
-    acb_clear(_sin_z);
-    arb_clear(_sin_z_re); arb_clear(_sin_z_im);
-
-    return num_from_d_d(sin_z_re, sin_z_im);
+    acb_sin(_res -> dat, _self -> dat, PREC);
 }
 
-num_t
-num_cos (const num_t self)
+void
+num_cos (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    double cos_z_re, cos_z_im;
-
-    arb_t _cos_z_re, _cos_z_im;
-    acb_t _cos_z;
-    acb_init(_cos_z);
-    arb_init(_cos_z_re); arb_init(_cos_z_im);
-    acb_cos(_cos_z, _self -> z, PREC);
-    acb_get_real(_cos_z_re, _cos_z);
-    acb_get_imag(_cos_z_im, _cos_z);
-    cos_z_re = arbtod(_cos_z_re);
-    cos_z_im = arbtod(_cos_z_im);
-    acb_clear(_cos_z);
-    arb_clear(_cos_z_re); arb_clear(_cos_z_im);
-
-    return num_from_d_d(cos_z_re, cos_z_im);
+    acb_cos(_res -> dat, _self -> dat, PREC);
 }
 
 /* Binary operations */
 
 /* Arithmetic */
 
-num_t
-num_add (const num_t self, const num_t other)
+void
+num_add (num_t res, const num_t self, const num_t other)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     const struct num * _other = other;
-
-    double add_z_re, add_z_im;
-
-    arb_t _add_z_re, _add_z_im;
-    acb_t _add_z;
-    acb_init(_add_z);
-    arb_init(_add_z_re); arb_init(_add_z_im);
-    acb_add(_add_z, _self -> z, _other -> z, PREC);
-    acb_get_real(_add_z_re, _add_z);
-    acb_get_imag(_add_z_im, _add_z);
-    add_z_re = arbtod(_add_z_re);
-    add_z_im = arbtod(_add_z_im);
-    acb_clear(_add_z);
-    arb_clear(_add_z_re), arb_clear(_add_z_im);
-
-    return num_from_d_d(add_z_re, add_z_im);
+    acb_add(_res -> dat, _self -> dat, _other -> dat, PREC);
 }
 
-num_t
-num_sub (const num_t self, const num_t other)
+void
+num_sub (num_t res, const num_t self, const num_t other)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     const struct num * _other = other;
-
-    double sub_z_re, sub_z_im;
-
-    arb_t _sub_z_re, _sub_z_im;
-    acb_t _sub_z;
-    acb_init(_sub_z);
-    arb_init(_sub_z_re); arb_init(_sub_z_im);
-    acb_sub(_sub_z, _self -> z, _other -> z, PREC);
-    acb_get_real(_sub_z_re, _sub_z);
-    acb_get_imag(_sub_z_im, _sub_z);
-    sub_z_re = arbtod(_sub_z_re);
-    sub_z_im = arbtod(_sub_z_im);
-    acb_clear(_sub_z);
-    arb_clear(_sub_z_re), arb_clear(_sub_z_im);
-
-    return num_from_d_d(sub_z_re, sub_z_im);
+    acb_sub(_res -> dat, _self -> dat, _other -> dat, PREC);
 }
 
-num_t
-num_mul (const num_t self, const num_t other)
+void
+num_mul (num_t res, const num_t self, const num_t other)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     const struct num * _other = other;
-
-    double mul_z_re, mul_z_im;
-
-    arb_t _mul_z_re, _mul_z_im;
-    acb_t _mul_z;
-    acb_init(_mul_z);
-    arb_init(_mul_z_re); arb_init(_mul_z_im);
-    acb_mul(_mul_z, _self -> z, _other -> z, PREC);
-    acb_get_real(_mul_z_re, _mul_z);
-    acb_get_imag(_mul_z_im, _mul_z);
-    mul_z_re = arbtod(_mul_z_re);
-    mul_z_im = arbtod(_mul_z_im);
-    acb_clear(_mul_z);
-    arb_clear(_mul_z_re), arb_clear(_mul_z_im);
-
-    return num_from_d_d(mul_z_re, mul_z_im);
+    acb_mul(_res -> dat, _self -> dat, _other -> dat, PREC);    
 }
 
-num_t
-num_div (const num_t self, const num_t other)
+void
+num_div (num_t res, const num_t self, const num_t other)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     const struct num * _other = other;
-
-    double div_z_re, div_z_im;
-
-    arb_t _div_z_re, _div_z_im;
-    acb_t _div_z;
-    acb_init(_div_z);
-    arb_init(_div_z_re); arb_init(_div_z_im);
-    acb_div(_div_z, _self -> z, _other -> z, PREC);
-    acb_get_real(_div_z_re, _div_z);
-    acb_get_imag(_div_z_im, _div_z);
-    div_z_re = arbtod(_div_z_re);
-    div_z_im = arbtod(_div_z_im);
-    acb_clear(_div_z);
-    arb_clear(_div_z_re), arb_clear(_div_z_im);
-
-    return num_from_d_d(div_z_re, div_z_im);
+    acb_div(_res -> dat, _self -> dat, _other -> dat, PREC);
 }
 
-num_t
-num_fmod (const num_t self, const num_t other)
+void
+num_fmod (num_t res, const num_t self, const num_t other)
 {
     assert(num_is_real(self) && num_is_real(other));
 
     const double _self = num_to_d(self);
     const double _other = num_to_d(other);
     
-    return num_from_d(fmod(_self, _other));
+    num_set_d(res, fmod(_self, _other));
 }
 
-num_t
-num_pow (const num_t self, const num_t other)
+void
+num_pow (num_t res, const num_t self, const num_t other)
 {
+    struct num * _res = res;
     const struct num * _self = self;
     const struct num * _other = other;
-
-    double pow_z_re, pow_z_im;
-
-    arb_t _pow_z_re, _pow_z_im;
-    acb_t _pow_z;
-    acb_init(_pow_z);
-    arb_init(_pow_z_re); arb_init(_pow_z_im);
-    acb_pow(_pow_z, _self -> z, _other -> z, PREC);
-    acb_get_real(_pow_z_re, _pow_z);
-    acb_get_imag(_pow_z_im, _pow_z);
-    pow_z_re = arbtod(_pow_z_re);
-    pow_z_im = arbtod(_pow_z_im);
-    acb_clear(_pow_z);
-    arb_clear(_pow_z_re), arb_clear(_pow_z_im);
-
-    return num_from_d_d(pow_z_re, pow_z_im);
+    acb_pow(_res -> dat, _self -> dat, _other -> dat, PREC);
 }
 
 /* Logical */
@@ -535,10 +393,10 @@ num_eq (const num_t self, const num_t other)
     arb_t _other_re, _other_im;
     arb_init(_self_re), arb_init(_self_im);
     arb_init(_other_re), arb_init(_other_im);
-    acb_get_real(_self_re, _self -> z);
-    acb_get_real(_other_re, _other -> z);
-    acb_get_imag(_self_im, _self -> z);
-    acb_get_imag(_other_im, _other -> z);
+    acb_get_real(_self_re, _self -> dat);
+    acb_get_real(_other_re, _other -> dat);
+    acb_get_imag(_self_im, _self -> dat);
+    acb_get_imag(_other_im, _other -> dat);
     re_eq = arb_eq(_self_re, _other_re);
     im_eq = arb_eq(_self_im, _other_im);
     arb_clear(_self_re), arb_clear(_self_im);
@@ -559,8 +417,8 @@ num_lt (const num_t self, const num_t other)
 
     arb_t _self_re,_other_re;
     arb_init(_self_re), arb_init(_other_re);
-    acb_get_real(_self_re, _self -> z);
-    acb_get_real(_other_re, _other -> z);
+    acb_get_real(_self_re, _self -> dat);
+    acb_get_real(_other_re, _other -> dat);
     is_lt = arb_lt(_self_re, _other_re);
     arb_clear(_self_re), arb_clear(_other_re);
 
@@ -579,8 +437,8 @@ num_gt (const num_t self, const num_t other)
 
     arb_t _self_re,_other_re;
     arb_init(_self_re), arb_init(_other_re);
-    acb_get_real(_self_re, _self -> z);
-    acb_get_real(_other_re, _other -> z);
+    acb_get_real(_self_re, _self -> dat);
+    acb_get_real(_other_re, _other -> dat);
     is_gt = arb_gt(_self_re, _other_re);
     arb_clear(_self_re), arb_clear(_other_re);
 
@@ -599,8 +457,8 @@ num_le (const num_t self, const num_t other)
 
     arb_t _self_re,_other_re;
     arb_init(_self_re), arb_init(_other_re);
-    acb_get_real(_self_re, _self -> z);
-    acb_get_real(_other_re, _other -> z);
+    acb_get_real(_self_re, _self -> dat);
+    acb_get_real(_other_re, _other -> dat);
     is_le = arb_le(_self_re, _other_re);
     arb_clear(_self_re), arb_clear(_other_re);
 
@@ -619,99 +477,51 @@ num_ge (const num_t self, const num_t other)
 
     arb_t _self_re,_other_re;
     arb_init(_self_re), arb_init(_other_re);
-    acb_get_real(_self_re, _self -> z);
-    acb_get_real(_other_re, _other -> z);
+    acb_get_real(_self_re, _self -> dat);
+    acb_get_real(_other_re, _other -> dat);
     is_ge = arb_ge(_self_re, _other_re);
     arb_clear(_self_re), arb_clear(_other_re);
 
     return (is_ge != 0) ? true : false;
 }
 
-num_t
-num_erf (const num_t self)
+void
+num_erf (num_t res, const num_t self)
 {
+    struct num * _res = res;
     const struct num * _self = self;
-
-    double erf_z_re, erf_z_im;
-    
-    acb_t _erf_z;
-    arb_t _erf_z_re, _erf_z_im;
-    acb_init(_erf_z);
-    arb_init(_erf_z_re); arb_init(_erf_z_im);
-    acb_hypgeom_erf(_erf_z, _self -> z, PREC);
-    acb_get_real(_erf_z_re, _erf_z);
-    acb_get_imag(_erf_z_im, _erf_z);
-    erf_z_re = arbtod(_erf_z_re);
-    erf_z_im = arbtod(_erf_z_im);
-    acb_clear(_erf_z);
-    arb_clear(_erf_z_re); arb_clear(_erf_z_im);
-
-    return num_from_d_d(erf_z_re, erf_z_im);
-}
-
-num_t
-num_erfc (const num_t self)
-{
-    const struct num * _self = self;
-
-    double erf_z_re, erf_z_im;
-    
-    acb_t _erf_z;
-    arb_t _erf_z_re, _erf_z_im;
-    acb_init(_erf_z);
-    arb_init(_erf_z_re); arb_init(_erf_z_im);
-    acb_hypgeom_erfc(_erf_z, _self -> z, PREC);
-    acb_get_real(_erf_z_re, _erf_z);
-    acb_get_imag(_erf_z_im, _erf_z);
-    erf_z_re = arbtod(_erf_z_re);
-    erf_z_im = arbtod(_erf_z_im);
-    acb_clear(_erf_z);
-    arb_clear(_erf_z_re); arb_clear(_erf_z_im);
-
-    return num_from_d_d(erf_z_re, erf_z_im);
-}
-
-num_t
-num_rgamma (const num_t self)
-{
-    const struct num * _self = self;
-
-    acb_t _rgamma_z;
-    arb_t _rgamma_z_re, _rgamma_z_im;
-    arb_init(_rgamma_z_re); arb_init(_rgamma_z_im);
-    acb_init(_rgamma_z);
-    acb_hypgeom_rgamma(_rgamma_z, _self -> z, PREC);
-    acb_get_real(_rgamma_z_re, _rgamma_z);
-    acb_get_imag(_rgamma_z_im, _rgamma_z);
-    const double rgamma_z_re = arbtod(_rgamma_z_re);
-    const double rgamma_z_im = arbtod(_rgamma_z_im);
-    acb_clear(_rgamma_z);
-    arb_clear(_rgamma_z_re); arb_clear(_rgamma_z_im);
-
-    return num_from_d_d(rgamma_z_re, rgamma_z_im);
+    acb_hypgeom_erf(_res -> dat, _self -> dat, PREC);    
 }
 
 void
-num_cpy (num_t* self, const num_t other)
+num_erfc (num_t res, const num_t self)
 {
-    struct num * _self = *self;
-    const struct num * _other = other;
-    acb_set(_self -> z, _other -> z);
+    struct num * _res = res;
+    const struct num * _self = self;
+    acb_hypgeom_erfc(_res -> dat, _self -> dat, PREC);  
 }
 
-num_t
-num_max (int count, ...)
+void
+num_rgamma (num_t res, const num_t self)
 {
-    va_list ap;
-    va_start(ap, count); 
+    struct num * _res = res;
+    const struct num * _self = self;
+    acb_hypgeom_rgamma(_res -> dat, _self -> dat, PREC);    
+}
 
-    double M = num_to_d(va_arg(ap, num_t));
-    for (int j = 1; j < count; j++)
-    {
-        const double n = num_to_d(va_arg(ap, num_t));
-	M = (n > M) ? n : M;
-    }
-    va_end(ap);
+void
+num_max (num_t res, const num_t self, const num_t other)
+{
+    assert(num_is_real(self) && num_is_real(other));
+    struct num * _res = res;
+    const double _self = num_to_d(self);
+    const double _other = num_to_d(other);
+    acb_set_d(_res -> dat, (_self > _other) ? _self : _other );
+}
 
-    return num_from_d(M);    
+void
+num_max3 (num_t res, const num_t self, const num_t other, const num_t another)
+{
+    num_max(res, self, other);
+    num_max(res, res, another);
 }

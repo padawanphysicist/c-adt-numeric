@@ -56,15 +56,6 @@ delete (void * self)
 	free(self);
 }
 
-/* void* */
-/* clone (const void* self) */
-/* { */
-/*     const struct ABC* const* cp = self; */
-
-/* 	assert(self && (*cp) && (*cp) -> clone);     */
-/* 	return (*cp) -> clone(self); */
-/* } */
-
 size_t
 size_of (const void* self)
 {

@@ -2,6 +2,12 @@ CC = gcc
 CFLAGS:= -std=c99 \
 	-Wall \
 	-Wextra \
+#	-Wdouble-promotion \
+	-Wno-unused-parameter \
+	-Wno-unused-function \
+	-Wno-sign-conversion \
+	-fsanitize=undefined \
+	-fsanitize-trap \
 	-pedantic
 
 # For Unity

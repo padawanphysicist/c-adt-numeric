@@ -43,14 +43,32 @@ typedef void * num_t;
 void
 num_print (const num_t self, const bool endline);
 
-num_t
-num_from_d (const double x);
+/**
+ * Sets \p self to zero.
+ */
+void
+num_zero (num_t self);
 
-num_t
-num_from_d_d (const double re, const double im);
+/**
+ * Sets \p self to one.
+ */
+void
+num_one (num_t self);
 
-num_t
-num_zero (void);
+/**
+ * Sets \p self to the imaginary unit.
+ */
+void
+num_onei (num_t self);
+
+void
+num_set (num_t self, const num_t other);
+
+void
+num_set_d (num_t self, const double x);
+
+void
+num_set_d_d (num_t self, const double x, const double y);
 
 /***************************************/
 /* Accessors: Real and Imaginary parts */
@@ -59,14 +77,14 @@ num_zero (void);
 /**
  * Returns the real part of \p _self (\f$x\f$), \f$\mathrm{Re}(x)\f$.
  */
-num_t
-num_real (const num_t self);
+void
+num_real (num_t res, const num_t self);
 
 /**
  * Returns the imaginary part of \p _self (\f$x\f$), \f$\mathrm{Im}(x)\f$.
  */
-num_t
-num_imag (const num_t self);
+void
+num_imag (num_t res, const num_t self);
 
 /**************/
 /* Predicates */
@@ -76,13 +94,13 @@ num_imag (const num_t self);
  * Returns nonzero iff \p _self is zero, within tolerance.
  */
 bool
-num_is_zero (const num_t _self);
+num_is_zero (const num_t self);
 
 /**
  * Returns nonzero iff \p _self has a zero imaginary part.
  */
 bool
-num_is_real (const num_t _self);
+num_is_real (const num_t self);
 
 /****************/
 /* Type casting */
@@ -92,7 +110,7 @@ num_is_real (const num_t _self);
  * Converts numeric types to machine's double.
  */
 double
-num_to_d (const num_t _self);
+num_to_d (const num_t self);
 
 /* void */
 /* num_to_pair (double* res, const num_t _self); */
@@ -107,62 +125,62 @@ num_to_complex (const num_t self);
 /**
  * Returns the absolute value of \p _self (\f$x\f$), \f$|x|\f$.
  */
-num_t
-num_abs (const num_t self);
+void
+num_abs (num_t res, const num_t self);
 
 /**
  * Returns the negative of \p _self (\f$x\f$), \f$-x\f$.
  */
-num_t
-num_neg (const num_t self);
+void
+num_neg (num_t res, const num_t self);
 
-num_t
-num_inv (const num_t self);
+void
+num_inv (num_t res, const num_t self);
 
 /**
  * Returns the complex conjugate of \p _self (\f$x\f$), \f$x^\ast\f$.
  */
-num_t
-num_conj (const num_t self);
+void
+num_conj (num_t res, const num_t self);
 
-num_t
-num_ceil (const num_t self);
+void
+num_ceil (num_t res, const num_t self);
 
 /**
  * Returns the argument of \p _self (\f$x\f$), \f$\mathrm{arg}(x)\f$.
  */
-num_t
-num_arg (const num_t _self);
+void
+num_arg (num_t res, const num_t self);
 
 /**
  * Returns the square root of the number
  */
-num_t
-num_sqrt (const num_t _self);
+void
+num_sqrt (num_t res, const num_t self);
 
 /**
  * Returns the exponential of the number
  */
-num_t
-num_exp (const num_t _self);
+void
+num_exp (num_t res, const num_t self);
 
 /**
  * Returns the logarithm of the number
  */
-num_t
-num_log (const num_t _self);
+void
+num_log (num_t res, const num_t self);
 
 /**
  * Returns the sine of the number
  */
-num_t
-num_sin (const num_t _self);
+void
+num_sin (num_t res, const num_t self);
 
 /**
  * Returns the cosine of the number
  */
-num_t
-num_cos (const num_t _self);
+void
+num_cos (num_t res, const num_t self);
 
 /*********************/
 /* Binary operations */
@@ -175,38 +193,38 @@ num_cos (const num_t _self);
 /**
  * returns the addition of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x + y\f$.
  */
-num_t
-num_add (const num_t _self, const num_t _other);
+void
+num_add (num_t res, const num_t self, const num_t other);
 
 /**
  * returns the subtraction of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x - y\f$.
  */
-num_t
-num_sub (const num_t _self, const num_t _other);
+void
+num_sub (num_t res, const num_t self, const num_t other);
 
 /**
  * returns the multiplication of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x\cdot y\f$.
  */
-num_t
-num_mul (const num_t _self, const num_t _other);
+void
+num_mul (num_t res, const num_t self, const num_t other);
 
 /**
  * returns the division of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x/y\f$.
  */
-num_t
-num_div (const num_t _self, const num_t _other);
+void
+num_div (num_t res, const num_t self, const num_t other);
 
 /**
  *  Returns the remainder of the division of \p _self (\f$x\f$) and \p _other (\f$y\f$), \f$x/y\f$.
  */
-num_t
-num_fmod (const num_t _self, const num_t _other);
+void
+num_fmod (num_t res, const num_t self, const num_t other);
 
 /**
  * returns the exponentiation of \p _self (\f$x\f$) to \p _other (\f$y\f$), \f$x^y\f$.
  */
-num_t
-num_pow (const num_t _self, const num_t _other);
+void
+num_pow (num_t res, const num_t self, const num_t other);
 
 /***********/
 /* Logical */
@@ -235,20 +253,18 @@ num_le (const num_t _self, const num_t _other);
 /* Special functions */
 /*********************/
 
-num_t
-num_erf (const num_t self);
-
-num_t
-num_erfc (const num_t self);
-
-num_t
-num_rgamma (const num_t self);
+void
+num_erf (num_t res, const num_t self);
 
 void
-num_cpy (num_t* self, const num_t other);
+num_erfc (num_t res, const num_t self);
 
-num_t
-num_max (int count, ...);
-    
+void
+num_rgamma (num_t res, const num_t self);
 
+void
+num_max (num_t res, const num_t self, const num_t other);
+
+void
+num_max3 (num_t res, const num_t self, const num_t other, const num_t another);
 #endif /* __NUM_H__ */
