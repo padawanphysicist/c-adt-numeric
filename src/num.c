@@ -111,6 +111,14 @@ num_set(num_t self, const num_t other)
 }
 
 void
+num_set_acb(num_t self, const acb_t other)
+{
+    struct num * _self = self;
+    acb_set(_self -> dat, other);
+}
+
+
+void
 num_set_d(num_t self, const double x)
 {
     struct num * _self = self;

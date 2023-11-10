@@ -400,6 +400,22 @@ test_num_pow (void)
 }
 
 void
+test_num_pow_d (void)
+{
+    num_t x;
+    double complex res;
+
+    x = new(num);
+    num_set_d_d(x, 3.0, 4.0);
+    num_pow_d(x, x, 2.0);
+    res = num_to_complex(x);
+    delete(x);
+
+    TEST_ASSERT_EQUAL_DOUBLE(-7.0, creal(res));
+    TEST_ASSERT_EQUAL_DOUBLE(24.0, cimag(res));
+}
+
+void
 test_num_pow_cmplx (void)
 {
     num_t x, y;
@@ -627,6 +643,7 @@ main (void)
 
     RUN_TEST(test_num_cpy);
     RUN_TEST(test_num_max);
+    RUN_TEST(test_num_pow_d);
 
     return UNITY_END();
 }
