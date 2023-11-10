@@ -46,6 +46,7 @@ var num_8c =
     [ "num_sub", "num_8c.html#ad3adbf8ea0ea622b66330fc09b47e1f2", null ],
     [ "num_to_complex", "num_8c.html#ae1442e3726e587c6a9b83ee916cdce08", null ],
     [ "num_to_d", "num_8c.html#afbb162dcd4b3dfa2c44eb77edea3608d", null ],
+    [ "num_to_d_d", "num_8c.html#afefe23389246317934aa16a6501c06ac", null ],
     [ "num_zero", "num_8c.html#aa23d799bced5feb02aa72679e8bc3904", null ],
     [ "num", "num_8c.html#ae7ef45dc2f88325913184030e4b47db7", null ]
 ];
