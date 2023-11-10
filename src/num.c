@@ -132,13 +132,6 @@ num_set_d_d(num_t self, const double x, const double y)
     acb_set_d_d(_self -> dat, x, y);
 }
 
-void
-num_set_acb (num_t self, const acb_t x)
-{
-    struct num * _self = self;
-    acb_set(_self -> dat, x);    
-}
-
 /* Input and Output */
 void
 num_print (const num_t self, const bool endline)
