@@ -210,6 +210,21 @@ num_to_d (const num_t self)
     return res;
 }
 
+void
+num_to_d_d (double* res, const num_t self)
+{
+    arb_t x, y;
+    const struct num * _self = self;
+
+    arb_init(x), arb_init(y);
+    acb_get_real(x, _self -> dat);
+    acb_get_imag(y, _self -> dat);
+
+    res[0] = arbtod(x), res[1] = arbtod(y);
+    arb_clear(x), arb_clear(y);
+}
+
+
 double complex
 num_to_complex (const num_t self)
 {

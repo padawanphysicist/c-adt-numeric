@@ -112,8 +112,8 @@ num_is_real (const num_t self);
 double
 num_to_d (const num_t self);
 
-/* void */
-/* num_to_pair (double* res, const num_t _self); */
+void
+num_to_d_d (double* res, const num_t self);
 
 double complex
 num_to_complex (const num_t self);
