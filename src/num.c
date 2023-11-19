@@ -556,6 +556,20 @@ num_le (const num_t self, const num_t other)
 }
 
 bool
+num_le_d (const num_t self, const double other)
+{
+    bool ret;
+    num_t _other;
+
+    _other = new(num);
+    num_set_d(_other, other);
+    ret = num_le(self, _other);
+    delete(_other);
+
+    return ret;
+}
+
+bool
 num_ge (const num_t self, const num_t other)
 {
     assert(num_is_real(self) && num_is_real(other));
@@ -573,6 +587,20 @@ num_ge (const num_t self, const num_t other)
     arb_clear(_self_re), arb_clear(_other_re);
 
     return (is_ge != 0) ? true : false;
+}
+
+bool
+num_ge_d (const num_t self, const double other)
+{
+    bool ret;
+    num_t _other;
+
+    _other = new(num);
+    num_set_d(_other, other);
+    ret = num_ge(self, _other);
+    delete(_other);
+
+    return ret;
 }
 
 void

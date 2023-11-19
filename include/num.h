@@ -258,9 +258,13 @@ num_lt (const num_t _self, const num_t _other);
 
 bool
 num_ge (const num_t _self, const num_t _other);
+bool
+num_ge_d (const num_t _self, const double _other);
 
 bool
 num_le (const num_t _self, const num_t _other);
+bool
+num_le_d (const num_t _self, const double _other);
 
 /*********************/
 /* Special functions */
