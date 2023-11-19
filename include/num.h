@@ -79,12 +79,16 @@ num_set_d_d (num_t self, const double x, const double y);
  */
 void
 num_real (num_t res, const num_t self);
+double
+num_real_d (const num_t self);
 
 /**
  * Returns the imaginary part of \p _self (\f$x\f$), \f$\mathrm{Im}(x)\f$.
  */
 void
 num_imag (num_t res, const num_t self);
+double
+num_imag_d (const num_t self);
 
 /**************/
 /* Predicates */

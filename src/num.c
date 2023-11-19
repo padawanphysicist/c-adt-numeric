@@ -157,6 +157,20 @@ num_real (num_t res, const num_t self)
     acb_set_arb(_res -> dat, x);
     arb_clear(x);
 }
+double
+num_real_d (const num_t self)
+{
+    double ret;
+    const struct num * _self = self;
+    
+    arb_t x;
+    arb_init(x);
+    acb_get_real(x, _self -> dat);
+    ret = arbtod(x);
+    arb_clear(x);
+
+    return ret
+}
 
 void
 num_imag (num_t res, const num_t self)
@@ -169,6 +183,21 @@ num_imag (num_t res, const num_t self)
     acb_get_imag(x, _self -> dat);
     acb_set_arb(_res -> dat, x);
     arb_clear(x);
+}
+
+double
+num_imag_d (const num_t self)
+{
+    double ret;
+    const struct num * _self = self;
+    
+    arb_t x;
+    arb_init(x);
+    acb_get_imag(x, _self -> dat);
+    ret = arbtod(x);
+    arb_clear(x);
+
+    return ret
 }
 
 /* Predicates */
