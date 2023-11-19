@@ -493,6 +493,20 @@ num_gt (const num_t self, const num_t other)
 }
 
 bool
+num_gt_d (const num_t self, const double other)
+{
+    num_t _other;
+    bool ret;
+
+    _other = new(num);
+    num_set_d(_other, other);
+    ret = num_gt(self, _other);
+    delete(_other);
+
+    return ret;
+}
+
+bool
 num_le (const num_t self, const num_t other)
 {
     assert(num_is_real(self) && num_is_real(other));

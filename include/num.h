@@ -247,6 +247,9 @@ bool
 num_gt (const num_t _self, const num_t _other);
 
 bool
+num_gt_d (const num_t _self, const double _other);
+
+bool
 num_lt (const num_t _self, const num_t _other);
 
 bool
