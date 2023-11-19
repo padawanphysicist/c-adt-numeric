@@ -16,6 +16,7 @@ var num_8h =
     [ "num_fmod", "num_8h.html#aa4240a7317dbf024ba5d550707fc8fe8", null ],
     [ "num_ge", "num_8h.html#a9ab7bb5405c85bcfa59b962bd3b53d63", null ],
     [ "num_gt", "num_8h.html#a54270668d356abc2a6420b91aabc7ec6", null ],
+    [ "num_gt_d", "num_8h.html#a6dfd5dc03680ddb1e4629fa562b7ccbd", null ],
     [ "num_imag", "num_8h.html#a54043a68f926094f8d2993af2ff17369", null ],
     [ "num_inv", "num_8h.html#a174499439e669b498cc6895d8631cd8c", null ],
     [ "num_is_real", "num_8h.html#ac685f85b153dc74d858faa82ab2e149e", null ],

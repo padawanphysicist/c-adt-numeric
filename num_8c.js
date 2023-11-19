@@ -18,6 +18,7 @@ var num_8c =
     [ "num_fmod", "num_8c.html#aa4240a7317dbf024ba5d550707fc8fe8", null ],
     [ "num_ge", "num_8c.html#ae042cfe58567ff431eafa7a00612d99b", null ],
     [ "num_gt", "num_8c.html#adb64a9c8d24500b25eac19ce8626f5ed", null ],
+    [ "num_gt_d", "num_8c.html#aa72c9215b74fe4c271f7bcef33113b0e", null ],
     [ "num_imag", "num_8c.html#a54043a68f926094f8d2993af2ff17369", null ],
     [ "num_inv", "num_8c.html#a174499439e669b498cc6895d8631cd8c", null ],
     [ "num_is_real", "num_8c.html#ac685f85b153dc74d858faa82ab2e149e", null ],
