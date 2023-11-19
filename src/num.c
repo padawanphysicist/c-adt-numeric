@@ -169,7 +169,7 @@ num_real_d (const num_t self)
     ret = arbtod(x);
     arb_clear(x);
 
-    return ret
+    return ret;
 }
 
 void
@@ -197,7 +197,7 @@ num_imag_d (const num_t self)
     ret = arbtod(x);
     arb_clear(x);
 
-    return ret
+    return ret;
 }
 
 /* Predicates */
