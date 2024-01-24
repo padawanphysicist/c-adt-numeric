@@ -10,6 +10,7 @@ var num_8h =
     [ "num_cos", "num_8h.html#aed8ad81c3fb84be3f5e493d23dd5b064", null ],
     [ "num_div", "num_8h.html#a0eaeb71b29b34a870027adb86eba6edc", null ],
     [ "num_eq", "num_8h.html#afb58bb1f7547779d9a71ea0be32c4f23", null ],
+    [ "num_eq_d", "num_8h.html#a22b79043cbcddad971a24e003e549311", null ],
     [ "num_erf", "num_8h.html#a21b2ee6924d9c3ba6bcd0743861e4420", null ],
     [ "num_erfc", "num_8h.html#a7d27b6d5bde77201dd058e583990d168", null ],
     [ "num_exp", "num_8h.html#a34001a98908e8c79b813cd9afb7aaeea", null ],
